@@ -41,21 +41,53 @@ String.prototype.cycle = function cycle (int) {
     return this.slice(-int) + this.slice(0, -int);
 };
 
+String.prototype.isUpper = function isUpper () {
+    return /[A-Z]/.test(this);
+};
+
+String.prototype.isLower = function isLower () {
+    return /[a-z]/.test(this);
+};
+
+String.prototype.isDigit = function isDigit() {
+    return /[0-9]/.test(this);
+};
+
+String.prototype.alphanum = function alphanum () {
+    return /[A-Za-z]/.test(this) ? [1,
+                                    /[A-Z]/.test(this) ?
+                                    "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
+                                    "abcdefghijklmnopqrstuvwxyz"]
+    : /[0-9]/.test(this) ? [2, "0123456789"]
+    : [0, this]
+};
+
 Math.Fib = function Fib (n) {
     if (n <= 1)
         return n;
     return Math.Fib(n-1) + Math.Fib(n-2);
 }
 
-// Just for the online interpreter
+Math.prime = function prime (number) {
+    var start = 2;
+    while (start <= Math.sqrt(number)) {
+        if (number % start++ < 1) return false;
+    }
+    return number > 1;
+}
+
 function addItem (a,b) {
     document.getElementById('cheat').innerHTML += a+" -> "+b+"<br>";
 }
 
-/* Define rule mappings (e.g. p => pow) */
+String.Y = "0123456789";
+String.z = "abcdefghijklmnopqrstuvwxyz";
+String.Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 var rules = {
     "Math": {
         'p': 'pow',
+        'P': 'prime',
         'h': 'hypot',
         's': 'sqrt',
         'a': 'abs',
@@ -79,24 +111,31 @@ var rules = {
         'i': 'indexOf',
         'L': 'toLowerCase',
         'l': 'loop',
+        'm': 'match',
+        'n': 'length',
+        'N': 'alphanum',
         'r': 'replace',
         'R': 'repeat',
         's': 'split',
         'S': 'slice',
         'u': 'toUpperCase',
         'v': 'reverse',
+        'Y': 'isDigit',
+        'z': 'isLower',
+        'Z': 'isUpper'
     },
     "Array": {
         'C': 'cycle',
         'f': 'fill',
+        'i': 'indexOf',
         'j': 'join',
         'k': 'keys',
         'm': 'map',
         'r': 'reverse',
         'R': 'reduce'
     },
-    "Number": {
-        'b': 'toString'
+    "RegExp": {
+        't': 'test'
     }
 }, enviorment = {
     '$': 'Math',
@@ -108,10 +147,10 @@ var rules = {
 }, noinf = {
     'C': String.fromCharCode,
     'F': Math.Fib,
+    'a': Math.abs,
     'r': Array.range
 };
 
-/* Apply rule mappings */
 Object.keys(rules).forEach(function (global) {
     Object.keys(rules[global]).forEach(function (prop) {
         window[global][prop] = window[global][ rules[global][prop] ];
@@ -139,25 +178,21 @@ Object.keys(noinf).forEach(function (global) {
     addItem(global, noinf[global].name);
 });
 
-// TeaScript functions
 var TeaScript = function (code, input) {
 
-    // Pre-define all 1-letter globals to avoid needing "var" in program
-    var a=c=d=f=g=h=i=j=k=l=m=n=o=p=q=s=t=u=v=w=0;
-    // Pre-define b to an empty string
+    var c=d=f=g=h=i=j=k=l=m=n=o=p=q=s=t=u=v=w=0;
     var b = "";
 
-    window['_'] = input; // Set _ to array of inputs
-    window['x'] = +input[0] || input[0]; // Set x to first input
-    window['y'] = +input[1] || input[1];
-    window['z'] = +input[2] || input[2];
+    window['_'] = input;
+    window['x'] = document.getElementById('int').checked ? +input[0] : input[0];
+    window['y'] = document.getElementById('int').checked ? +input[1] : input[1];
+    window['z'] = document.getElementById('int').checked ? +input[2] : input[2];
 
-    // Runs through babel, makes ES7 -> ES5
     var b = babel.transform(code
-                            .replace(/\(#/g,'((l,i,a)=>') // Function # shorthand
-                            .replace(/\((\d+(?:,\d+)?)#([A-Za-z0-9])(?![^A-Za-z0-9])/g,'($1)[$2]') // Removes need for some brackets
-                            .replace(/([xlia)])([A-Za-z])\(/g,'$1.$2(') // Removes need for some periods in some places
-                           ).code;
+                            .replace(/([(,=])#/g,'$1(l,i,a)=>')
+                            .replace(/\(([^)#]+?)#(\d|[A-Za-z])/g,'($1)[$2]')
+                            .replace(/([xliaS$)])([A-Za-z0-9])(?=[(:.+,)]|$)/g,'$1["$2"]')
+                            , { stage: 0 }).code;
     console.log(b);
-    return eval(b); // Run generated code
+    return eval(b);
 };
