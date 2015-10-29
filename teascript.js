@@ -178,10 +178,14 @@ Object.keys(noinf).forEach(function (global) {
     addItem(global, noinf[global].name);
 });
 
-var TeaScript = function (code, input) {
+var TeaScript = function (code, input, rep) {
 
     var c=d=f=g=h=i=j=k=l=m=n=o=p=q=s=t=u=v=w=0;
     var b = "";
+
+    Object.keys(rep).map(function (key) {
+        code = code.replace(new RegExp(key, 'g'), rep[key]);
+    });
 
     window['_'] = input;
     window['x'] = document.getElementById('int').checked ? +input[0] : input[0];
