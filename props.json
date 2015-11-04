@@ -1,0 +1,101 @@
+{
+    "macros": {
+        "Globals": {
+            "$": "Math",
+            "S": "String",
+            "A": "Array",
+            "B": "btoa",
+            "e": "eval",
+            "R": "RegExp",
+            "D": "Date",
+            "X": "Request",
+            "L": "shoco"
+        },
+        "Prototype": {
+            "String": {
+                "B": "batchReplace",
+                "c": "charCodeAt",
+                "C": "cycle",
+                "d": "reduce",
+                "f": "filter",
+                "g": "g_replace",
+                "h": "head",
+                "i": "indexOf",
+                "I": "includes",
+                "K": "chunk",
+                "L": "toLowerCase",
+                "l": "loop",
+                "m": "match",
+                "n": "length",
+                "N": "alphanum",
+                "O": "onlyChars",
+                "r": "replace",
+                "R": "repeat",
+                "s": "split",
+                "S": "slice",
+                "u": "toUpperCase",
+                "U": "unique",
+                "v": "reverse",
+                "Y": "isDigit",
+                "z": "isLower",
+                "Z": "isUpper"
+            },
+            "Array": {
+                "C": "cycle",
+                "F": "filter",
+                "f": "fill",
+                "i": "indexOf",
+                "I": "includes",
+                "j": "join",
+                "k": "keys",
+                "K": "chunk",
+                "m": "map",
+                "r": "reverse",
+                "R": "reduce",
+                "S": "sum",
+                "s": "newsort",
+                "u": "unique"
+            },
+            "RegExp": {
+                "t": "test"
+            }
+        },
+        "Subglobals": {
+            "Math": {
+                "p": "pow",
+                "P": "prime",
+                "h": "hypot",
+                "s": "sqrt",
+                "a": "abs",
+                "r": "random",
+                "F": "Fib",
+                "f": "factorial"
+            },
+            "String": {
+                "c": "fromCharCode"
+            },
+            "Array": {
+                "r": "range",
+                "f": "from"
+            }
+        },
+        "Other": {
+            "C": "String.fromCharCode",
+            "F": "Math.Fib",
+            "a": "Math.abs",
+            "r": "Array.range",
+            "N": "Math.rand"
+        }
+    },
+    "rep": {
+        "¡": "()",
+        "£": "xl(#",
+        "™": "(#"
+    },
+    "def": {
+        "Globals": "window[$1]",
+        "Prototype": "window[$1].prototype",
+        "Subglobals": "window[$1]",
+        "Other": "eval($1)"
+    }
+}
