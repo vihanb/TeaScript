@@ -62,6 +62,10 @@ String.prototype.alphanum = function alphanum () {
     : [0, this]
 };
 
+String.prototype.sort = function sort() {
+    return this.split``.sort().join``;
+}
+
 Math.Fib = function Fib (n) {
     if (n <= 1)
         return n;
@@ -133,9 +137,28 @@ var rules = {
         'm': 'map',
         'r': 'reverse',
         'R': 'reduce'
-    },
-    "RegExp": {
+    }
+}, getters = {
+    'RegExp': {
         't': 'test'
+    },
+    'Date': {
+        'n': 'now'
+    },
+    'Math': {
+        'R': 'random'
+    }
+}, gettersProto = {
+    'String': {
+        'O': 'toLowerCase',
+        'U': 'toUpperCase',
+        'x': 'isLower',
+        'X': 'isUpper',
+        'y': 'isDigit'
+    },
+    'Array': {
+        'R': 'reverse',
+        'S': 'sort'
     }
 }, enviorment = {
     '$': 'Math',
@@ -165,6 +188,20 @@ Object.keys(proto).forEach(function (global) {
     });
 });
 
+Object.keys(getters).forEach(function (global) {
+    Object.keys(getters[global]).forEach(function (prop) {
+        window[global].__defineGetter__(prop, eval('function() { return ' + global + '.' + getters[global][prop] + '() }'));
+        addItem(global + '.' + prop, global + '.' + getters[global][prop] + '()');
+    });
+});
+
+Object.keys(gettersProto).forEach(function (global) {
+    Object.keys(gettersProto[global]).forEach(function (prop) {
+        window[global].prototype.__defineGetter__(prop, eval('function() { return this.' + gettersProto[global][prop] + '() }'));
+        addItem(global + '.prototope.' + prop, global + '.prototype.' + gettersProto[global][prop] + '()');
+    });
+});
+
 Object.keys(enviorment).forEach(function (global) {
     window[global] = window[enviorment[global]];
     addItem(global, enviorment[global]);
@@ -180,8 +217,18 @@ Object.keys(noinf).forEach(function (global) {
 
 var TeaScript = function (code, input, rep) {
 
-    var c=d=f=g=h=i=j=k=l=m=n=o=p=q=s=t=u=v=w=0;
-    var b = "";
+    // x=y=z= makes y and z global... does that matter?
+    var b=c=d="";
+    var s=g=h=[];
+    var i=j=k={};
+    var l = String.Y;
+    var m = String.z;
+    var n = String.Z;
+    var o=p=q=0;
+    // could do anything more with these?
+    var f = false; // probably useless... ?
+    var t = true;
+    var u=v=w=0;
 
     Object.keys(rep).map(function (key) {
         code = code.replace(new RegExp(key, 'g'), rep[key]);
