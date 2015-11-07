@@ -17,6 +17,8 @@
                 "c": "charCodeAt",
                 "C": "cycle",
                 "d": "reduce",
+                "e": "every",
+                "E": "insert",
                 "f": "filter",
                 "g": "g_replace",
                 "h": "head",
@@ -29,6 +31,7 @@
                 "n": "length",
                 "N": "alphanum",
                 "O": "onlyChars",
+                "p": "sort",
                 "r": "replace",
                 "R": "repeat",
                 "s": "split",
@@ -42,6 +45,8 @@
             },
             "Array": {
                 "C": "cycle",
+                "d": "dupe",
+                "e": "every",
                 "F": "filter",
                 "f": "fill",
                 "i": "indexOf",
@@ -49,15 +54,22 @@
                 "j": "join",
                 "k": "keys",
                 "K": "chunk",
+                "L": "loc",
                 "m": "map",
+                "N": "min",
                 "r": "reverse",
                 "R": "reduce",
-                "S": "sum",
+                "S": "slice",
                 "s": "newsort",
-                "u": "unique"
+                "u": "unique",
+                "x": "sum",
+                "X": "max"
             },
             "RegExp": {
                 "t": "test"
+            },
+            "Number": {
+                "T": "toString"
             }
         },
         "Subglobals": {
@@ -84,13 +96,47 @@
             "F": "Math.Fib",
             "a": "Math.abs",
             "r": "Array.range",
-            "N": "Math.rand"
+            "N": "Math.rand",
+            "P": "parseInt",
+            "U": "Math.round"
+        }
+    },
+    "getters": {
+        "String": {
+            "": "",
+            "prototype": {}
         }
     },
     "rep": {
-        "¡": "()",
+        "¯": "X()",
+        "°": "N()",
+        "®": "P(",
+        "Ç": "C(",
+        "Å": "c()",
+        "¿": "s``.m(#",
+        "·": "s``",
         "£": "xl(#",
-        "™": "(#"
+        "µ": "j``",
+        "¢": "``",
+        "§": "`\n`",
+        "ß": "m(#",
+        "±": ")))",
+        "¡": "()",
+        "©": "))",
+        "»": "(#",
+        "¶": "||",
+        "Þ": "&&",
+        "ø": "` `",
+        "¦": "==",
+        "×": "(x)",
+        "Ø": "--",
+        "Æ": "++",
+        "¥": "$P",
+        "÷": "T(2)",
+        "æ": "Ld`",
+        "«": "<=",
+        "¤": ",2",
+        "¬": "+1"
     },
     "def": {
         "Globals": "window[$1]",
