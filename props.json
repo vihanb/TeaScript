@@ -103,8 +103,13 @@
     },
     "getters": {
         "String": {
-            "": "",
-            "prototype": {}
+            "prototype": {
+                "O": "toLowerCase",
+                "u":"",
+                "x":"",
+                "X":"",
+                "y":"",
+            }
         }
     },
     "rep": {

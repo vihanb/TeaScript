@@ -29,7 +29,43 @@
  * sum
  * chunk
  * unique
+ * min
+ * max
+ * loc
+ * containsAll
+ * dupe
 **/
+
+Array.prototype.dupe = function dupe () {
+    return this.filter(function(item, pos, self) {
+        return self.indexOf(item) == pos;
+    });
+};
+
+Array.prototype.max = function max () {
+    return Math.max.apply(Math, this);
+};
+
+Array.prototype.min = function min () {
+    return Math.min.apply(Math, this);
+};
+
+Array.prototype.loc = function loc () {
+    return [ Math.min.apply(Math, this), Math.max.apply(Math, this),
+            this.indexOf(Math.min.apply(Math, this)) == this.indexOf(Math.min.apply(Math, this), this.indexOf(Math.min.apply(Math, this))) ? 1 : 0,
+            this.indexOf(Math.max.apply(Math, this)) == this.indexOf(Math.max.apply(Math, this), this.indexOf(Math.max.apply(Math, this))) ? 1 : 0 ]
+};
+
+Array.prototype.containsAll = function containsAll (arg) {
+    var self = this;
+    if (typeof arg === "array") {
+        //        arg.every(function () {} );
+    } else {
+        return arguments.every(function (args) {
+            return self[ args[0] ] == args[1];
+        });
+    }
+};
 
 Array.prototype.unique = function unique () {
     return this.filter(function (value, index, self) {
@@ -85,14 +121,32 @@ Object.defineProperty(Array.prototype, 'n', LENGTH = { get: function () {
  * chunk
  * filter
  * head
+ * sort
+ * every
+ * insert
 **/
+
+String.prototype.insert = function insert (index, str) {
+    return this.slice(0, index) + str + this.slice(index);
+};
+
+String.prototype.sort = function sort (func) {
+    return this.split('').sort(func).join('')
+};
+
+String.prototype.every = function every (func) {
+    return this.split('').every(func);
+};
 
 String.prototype.head = function head (int) {
     return this.slice(0, int);
 };
 
-String.prototype.filter = function (func, delimiter) {
-    return this.split(delimiter || '').filter(func).join(delimiter || '');
+String.prototype.filter = function filter (func, delimiter, ret) {
+    var self = this;
+    return this.split(delimiter || '').filter(function (l,i,b) {
+        return func.call(this, l,i,self, b);
+    }).join(ret || '');
 };
 
 String.prototype.chunk = function chunk (size) {
@@ -121,12 +175,15 @@ String.prototype.batchReplace = function batchReplace (form) {
     }, this);
 };
 
-String.prototype.loop = function loop (func, delimiter) {
-    return this.split(delimiter || '').map(func).join(delimiter || '');
+String.prototype.loop = function loop (func, delimiter, ret) {
+    var self = this;
+    return this.split(delimiter || '').map(function (l,i,b) {
+        return func.call(this, l,i,self, b);
+    }).join(ret || '');
 };
 
 String.prototype.reduce = function reduce (func, start) {
-    return this.split('').reduce(func, start || this)
+    return this.split('').reduce(func, typeof start === "undefined" ? this : start);
 };
 
 String.prototype.head = function head (int) {
