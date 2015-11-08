@@ -81,7 +81,7 @@
         INF.comp =
             INF.comp.replace(/([(,=])#/g,'$1(l,i,a)=>')
             .replace(/\(([^)#]+?)#(\d|[A-Za-z])/g,'($1)[$2]')
-            .replace(/(?![^A-Za-z\/]{2,})([xyliaLSAX$)\/\]'"])([A-Za-z0-9])(?=[`(:.+,)<>?: ]|$)/g,'$1["$2"]');
+            .replace(/((?:[^A-Za-z\/]|^)[xyliaLSAX$)\/\]'"])([A-Za-z0-9])(?=[`(:.+,)<>?: ]|$)/g,'$1["$2"]');
 
         // Babel Transpilation
         if (babel) {
