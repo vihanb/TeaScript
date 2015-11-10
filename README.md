@@ -1,5 +1,5 @@
 # TeaScript
-TeaScript, JavaScript for gofing, ES2015 now.
+TeaScript, JavaScript for gofing with ES2015.
 
 [Online Interpreter](http://vihanserver.tk/p/TeaScript/)
 
