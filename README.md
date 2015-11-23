@@ -1,5 +1,3 @@
-# TeaScript
-
 <p align="center">
   <a href="http://vihanserver.tk/p/TeaScript/">
     <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/TeaScriptWide.png" width="546">
@@ -10,11 +8,10 @@
   TeaScript, JavaScript for gofing with ES2015.
 </p>
 
-<br>
-
+---
+# Try TeaScript
 <p align="center">
-
-<a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a> or <a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
+  <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a> or <a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
 
 </p>
 
