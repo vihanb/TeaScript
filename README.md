@@ -12,9 +12,13 @@
 
 ---
 
+<p align="center">
+
 [Online Interpreter & Docs](http://vihanserver.tk/p/TeaScript/)
 
 [Wiki Page](https://esolangs.org/wiki/TeaScript)
+
+</p>
 
 ---
 
