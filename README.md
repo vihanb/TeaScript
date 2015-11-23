@@ -14,9 +14,7 @@
 
 <p align="center">
 
-<a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a>
-
-<a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
+<a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a> or <a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
 
 </p>
 
