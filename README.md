@@ -1,5 +1,16 @@
 # TeaScript
-TeaScript, JavaScript for gofing with ES2015.
+
+<p align="center">
+  <a href="http://vihanserver.tk/p/TeaScript/">
+    <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/TeaScript.png" width="546">
+  </a>
+</p>
+
+<p align="center">
+  TeaScript, JavaScript for gofing with ES2015.
+</p>
+
+---
 
 [Online Interpreter & Docs](http://vihanserver.tk/p/TeaScript/)
 
