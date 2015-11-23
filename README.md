@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="http://vihanserver.tk/p/TeaScript/">
-    <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/TeaScript.png" width="546">
+    <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/TeaScriptWide.png" width="546">
   </a>
 </p>
 
