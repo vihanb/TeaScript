@@ -8,14 +8,11 @@
   TeaScript, JavaScript for gofing with ES2015.
 </p>
 
----
 # Try TeaScript
 <p align="center">
   <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a> or <a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
 
 </p>
-
----
 
 ## Basic Programs
 
