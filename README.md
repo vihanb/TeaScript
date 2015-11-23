@@ -10,7 +10,7 @@
   TeaScript, JavaScript for gofing with ES2015.
 </p>
 
----
+<br>
 
 <p align="center">
 
