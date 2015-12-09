@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  TeaScript, JavaScript for golfing with ES2015.
+  <b>IMPORTANT: TeaScript is NO LONGER being maintained</b><br>read below for why
 </p>
 
 # Try TeaScript
@@ -13,6 +13,31 @@
   <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter & Docs</a> or <a href="https://esolangs.org/wiki/TeaScript">Wiki Page</a>
 
 </p>
+
+# Current Status of TeaScript
+
+TeaScript's development has slowed down, when TeaScript was first made, I was spending tons of time on it, making what TeaScript is today. The reason TeaScript's development has stopped is due to a variety of reasons
+
+ - TeaScript was, the *first* JavaScript golfing languages. Originally I'd held back on TeaScript waiting *someone* to make a JavaScript golfing lang but none came. Days after TeaScript's debut, suddenly JavaScript golfing langs were flooding. Many of these offer significant benifits over TeaScript with little to none syntactic cues.
+ - TeaScript is a **lot** more "potent", it provides the full unlimited power of JavaScript, all valid JavaScript is valid TeaScript. TeaScript is a truly "JavaScript" golfing lang compared to others which are just languages in JavaScript. But this comes at a cost, paranthesis and more delimiters are required and syntax is bulky, complex expressions come at a cost.
+
+# Innovations
+to counter this problem:
+
+ - **Unicode shortcuts:** this helped *greatly* reduce TeaScript's syntax, for a while TeaScript exceled.<br>Unfortunately, almost all new golfing languages copied this ( I'm not accusing anyone :p  ).
+ - **String compression:** TeaScript brought powerful and consise string compression. This helped TeaScript and for a while TeaScript did great on many string compression challenges<br>Unforunetly, this didn't last to long as many languages quickly added compression. ( [*ahem*](https://github.com/molarmanful/ESMin/blob/gh-pages/interpreter.js#L56) :p )
+ 
+That said, it's not like TeaScript was left in the dust, TeaScript did bring many new features and did well it's few months that it was developed.
+ 
+---
+
+Will I continue development? Maybe one day a TeaScript 3 will come out but until then, I'm stopping TeaScript development.
+
+If you want to contribute, I'll still be accepting pull requests but don't expect any bug-fixes and new features coming at really at all.
+
+In the meanwhile, I'll be starting work on more specialized languages such as string compression languages.
+
+---
 
 ## Basic Programs
 
