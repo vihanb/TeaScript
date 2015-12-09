@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>IMPORTANT: TeaScript is NO LONGER being maintained</b><br>read below for why
+  <b>IMPORTANT: TeaScript is no longer being maintained</b><br>read below for why
 </p>
 
 # Try TeaScript
