@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  TeaScript, JavaScript for gofing with ES2015.
+  TeaScript, JavaScript for golfing with ES2015.
 </p>
 
 # Try TeaScript
