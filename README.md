@@ -24,7 +24,7 @@ TeaScript's development has slowed down, when TeaScript was first made, I was sp
 # Innovations
 to counter this problem:
 
- - **Unicode shortcuts:** this helped *greatly* reduce TeaScript's syntax, for a while TeaScript exceled.<br>Unfortunately, almost all new golfing languages copied this ( I'm not accusing anyone :p  ).
+ - **Unicode shortcuts:** this helped *greatly* reduce TeaScript's syntax, for a while TeaScript exceled.<br>Unfortunately, almost all new golfing languages adapted this ( I'm not accusing anyone :p  ).
  - **String compression:** TeaScript brought powerful and consise string compression. This helped TeaScript and for a while TeaScript did great on many string compression challenges<br>Unforunetly, this didn't last to long as many languages quickly added compression. ( [*ahem*](https://github.com/molarmanful/ESMin/blob/gh-pages/interpreter.js#L56) :p )
  
 That said, it's not like TeaScript was left in the dust, TeaScript did bring many new features and did well it's few months that it was developed.
