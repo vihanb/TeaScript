@@ -5,7 +5,6 @@
             "S": "String",
             "A": "Array",
             "B": "btoa",
-            "e": "eval",
             "R": "RegExp",
             "D": "Date",
             "X": "Request",
@@ -13,32 +12,35 @@
         },
         "Prototype": {
             "String": {
+                "a": "charCodeAt",
                 "B": "batchReplace",
-                "c": "charCodeAt",
                 "C": "cycle",
                 "d": "reduce",
                 "e": "every",
                 "E": "insert",
                 "f": "filter",
+                "F": "iff",
+                "G": "get",
                 "g": "g_replace",
                 "h": "head",
                 "i": "indexOf",
                 "I": "includes",
                 "K": "chunk",
-                "L": "toLowerCase",
                 "l": "loop",
                 "m": "match",
+                "M": "some",
                 "n": "length",
                 "N": "alphanum",
                 "O": "onlyChars",
                 "p": "sort",
-                "r": "replace",
+                "P": "mergecaps",
+                "r": "reverse",
                 "R": "repeat",
                 "s": "split",
                 "S": "slice",
-                "u": "toUpperCase",
+                "T": "valueOf",
                 "U": "unique",
-                "v": "reverse",
+                "W": "w_replace",
                 "Y": "isDigit",
                 "z": "isLower",
                 "Z": "isUpper"
@@ -47,22 +49,26 @@
                 "C": "cycle",
                 "d": "dupe",
                 "e": "every",
-                "F": "filter",
                 "f": "fill",
+                "F": "filter",
+                "g": "iff",
+                "G": "get",
                 "i": "indexOf",
                 "I": "includes",
-                "j": "join",
+                "j": "n_join",
                 "k": "keys",
                 "K": "chunk",
                 "L": "loc",
                 "m": "map",
                 "N": "min",
+                "p": "push",
+                "P": "pop",
                 "r": "reverse",
                 "R": "reduce",
                 "S": "slice",
                 "s": "newsort",
+                "t": "transpose",
                 "u": "unique",
-                "x": "sum",
                 "X": "max"
             },
             "RegExp": {
@@ -70,21 +76,26 @@
             },
             "Number": {
                 "T": "toString"
+            },
+            "Boolean": {
+                "T": "toString"
             }
         },
         "Subglobals": {
             "Math": {
+                "C": "sign",
+                "c": "ceil",
                 "p": "pow",
                 "P": "prime",
                 "h": "hypot",
                 "s": "sqrt",
                 "a": "abs",
-                "r": "random",
                 "F": "Fib",
                 "f": "factorial"
             },
             "String": {
-                "c": "fromCharCode"
+                "c": "fromCharCode",
+                "w": "raw"
             },
             "Array": {
                 "r": "range",
@@ -96,6 +107,7 @@
             "F": "Math.Fib",
             "a": "Math.abs",
             "r": "Array.range",
+            "M": "Math.r",
             "N": "Math.rand",
             "P": "parseInt",
             "U": "Math.round"
@@ -104,20 +116,30 @@
     "getters": {
         "String": {
             "prototype": {
-                "O": "toLowerCase",
-                "u":"",
-                "x":"",
-                "X":"",
-                "y":"",
+                "c": "charCodeAt",
+                "v": "reverse",
+                "L": "toLowerCase",
+                "u": "toUpperCase",
+                "z": "isLower",
+                "Z": "isUpper"
             }
+        },
+        "Array": {
+            "prototype": {
+                "x": "sum",
+                "d": "dupe"
+            }
+        },
+        "Math": {
+            "r": "random"
         }
     },
     "rep": {
         "¯": "X()",
         "°": "N()",
+        "¥": "$P(",
         "®": "P(",
-        "Ç": "C(",
-        "Å": "c()",
+        "²": "C(",
         "¿": "s``.m(#",
         "·": "s``",
         "£": "xl(#",
@@ -136,12 +158,15 @@
         "×": "(x)",
         "Ø": "--",
         "Æ": "++",
-        "¥": "$P",
         "÷": "T(2)",
         "æ": "Ld`",
         "«": "<=",
         "¤": ",2",
-        "¬": "+1"
+        "È": "F(",
+        "¬": "+1",
+        "Ð": "xs`",
+        "Ñ": "[0]",
+        "Ò": "[1]"
     },
     "def": {
         "Globals": "window[$1]",
