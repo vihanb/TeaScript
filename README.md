@@ -32,6 +32,20 @@ TeaScript can run on almost every JavaScript platform but it is tested on the br
 
 ### TeaScript 2 installation
 
+The easiest way is to use the script I put together, install [`teascript.sh`](https://github.com/vihanb/TeaScript)
+```bash
+$ chmod +x teascript.sh
+$ ./teascript.sh 
+```
+
+The required files should be automagically installed along with additional files for the shell to function such as `sh.js`.
+
+String compression isn't supported. This expects you have `wget` and SpiderMonkey 38 installed.
+
+---
+
+Alternatively you can install it manually.
+
 The first step is to install the required files for TeaScript 2:
  - [`/v/2/teascript.js`](https://github.com/vihanb/TeaScript/blob/master/v/2/teascript.js)
  - [`props.json`](https://github.com/vihanb/TeaScript/blob/master/props.json)
@@ -48,5 +62,5 @@ Edit `teascript.js` and scroll to the last line. Edit where it says `/*props.jso
 Now, run the two files (example for SpiderMonkey):
 
 ```sh
-$ js macros.js teascript.js -e "TeaScript(`Code Goes Here`)"
+$ js -e "shoco=babel=console={warn:String,log:String,transform:String}" -f macros.js teascript.js -e "print(TeaScript('Code Goes Here',['input1'],{}).out)"
 ```
