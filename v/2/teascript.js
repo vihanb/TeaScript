@@ -200,4 +200,4 @@
 
     global.TeaScript = TeaScript;
 
-}(window, /* props.json file contents goes here */));
+}(window, /*props.json*/));
