@@ -40,7 +40,14 @@ $ ./teascript.sh
 
 The required files should be automagically installed along with additional files for the shell to function such as `sh.js`.
 
-String compression isn't supported. This expects you have `wget` and SpiderMonkey 38 installed.
+String compression isn't supported. This expects you have `wget` and SpiderMonkey 38 installed. Once everything is installed, it should prompt you:
+
+```
+Code: <Enter Code Here>
+Input: <Enter comma seperated inputs here>
+```
+
+If you encounter an issue, you've already found the best place to report it.
 
 ---
 
