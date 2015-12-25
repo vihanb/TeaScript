@@ -10,15 +10,22 @@ var TeaScript = function TeaScript(Code, Input, Options) {
   // Interpreter Process
   //
   // - Generate Enviorment
-  // - Add `.` and `(` and `)`
-  // - Expand unicode shortcuts
+  // - Quote Balancing
+  // - Unicode Shortcuts
+  // - Property Expansion
+  // - Fix parenthesis
+  // -- Todo
   // - Decompress strings
-  // - Suffixes
+  // - Transpile
   // - eval
   ///
 
   var GenerationData = {
-    reps: "",
+    steps: {
+      strfix: "",
+      reps: "",
+      parenfix: ""
+    },
     transpiled: "",
     Error: ""
   };
@@ -35,7 +42,7 @@ var TeaScript = function TeaScript(Code, Input, Options) {
   // CONSTANTS
   var MAX_LITERAL = 65536; // 2^16
 
-  var ESCAPES = [["\"", "\"", "\\"], ["'", "'", "\\"], ["`", "`", "\\"], ["$", "$", "\\", 1]];
+  var ESCAPES = [["\"", "\"", "\\"], ["'", "'", "\\"], ["/", "/", "\\"], ["`", "`", "\\"], ["$", "$", "\\", 1]];
   var ESCAPES_START = ESCAPES.map(function (Escape) {
     return Escape[0];
   });
@@ -49,54 +56,119 @@ var TeaScript = function TeaScript(Code, Input, Options) {
     return !Escape[3];
   });
 
-  var CLOSE = [["\"", "\""], ["'", "'"], ["$", "$"], ["[", "]"], ["(", ")"], ["`", "`"]];
+  var CLOSE = [["[", "]"], ["(", ")"]];
+
+  var CLOSE_START = CLOSE.map(function (Item) {
+    return Item[0];
+  });
+  var CLOSE_END = CLOSE.map(function (Item) {
+    return Item[1];
+  });
 
   var MATCH_PROP = /[A-Za-z$_][\w$]*/;
   var MATCH_NUM = /\d/;
   var MATCH_LTRL = /["'0-9]/; // Literal
+  var MATCH_STRT = /["'0-9#(]/;
 
+  // String Balancing
+
+  // Unicode Shortcuts & Prop Expansion
   {
-    var EscapeChar = -1;
+    var _EscapeChar = -1;
     var PendingProp = "";
     for (var i = 0; i < Code.length; i++) {
       if (PendingProp.length > 0) {
         // Within a property name
         if (MATCH_PROP.test(Code[i])) {
+          // Issue 4 - https://github.com/vihanb/TeaScript/issues/4
+          // VERY TEMPORARY
+          // I'll add a way of detecting
+          // between a JS function and a TeaScript one
           PendingProp += Code[i];
+          if (i === Code.length - 1) GenerationData.steps.reps += PendingProp;
         } else {
           var _prop = PendingProp;
           PendingProp = "";
-          if (MATCH_LTRL.test(Code[i])) {
-            GenerationData.reps += "(";
-            i--;
+          if (MATCH_STRT.test(Code[i])) {
+            GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
+            GenerationData.steps.reps += "(";
+          } else {
+            GenerationData.steps.reps += _prop;
           }
+          i--;
         }
       } else {
         if (ESCAPES_START.includes(Code[i])) {
           // Found an escape character (string)
-          EscapeChar = ESCAPES_START.indexOf(Code[i]);
-          if (ESCAPES_KEEP[EscapeChar]) GenerationData.reps += Code[i];
+          _EscapeChar = ESCAPES_START.indexOf(Code[i]);
+          if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += Code[i];
           i++;
-          for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
-            if (Code[i] === ESCAPES_ESC[EscapeChar]) {
-              GenerationData.reps += ESCAPES_ESC[EscapeChar];
-              GenerationData.reps += Code[++i];
+          for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[_EscapeChar]; i++) {
+            if (Code[i] === ESCAPES_ESC[_EscapeChar]) {
+              if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[_EscapeChar];
+              GenerationData.steps.reps += Code[++i];
             } else {
-              GenerationData.reps += Code[i];
+              GenerationData.steps.reps += Code[i];
             }
             if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
           }
-          if (ESCAPES_KEEP[EscapeChar]) GenerationData.reps += Code[i];
+          if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += Code[i];
         } else if (MATCH_PROP.test(Code[i])) {
           // Property character
+          if (MATCH_LTRL.test(Code[i - 1])) GenerationData.steps.reps += ".";
           PendingProp += Code[i];
+        } else if (Code[i] === "#") {
+          GenerationData.steps.reps += "(l,i,a,b)=>";
+        } else if (MATCH_NUM.test(Code[i])) {
+          for (var j = i; i - j < MAX_LITERAL && /[\d.]/.test(Code[i]); i++) {
+            GenerationData.steps.reps += Code[i];
+          }GenerationData.steps.reps += " ";--i;
         } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) {
-          GenerationData.reps += Data.rep[Code[i]];
+          GenerationData.steps.reps += Data.rep[Code[i]];
         } else {
-          GenerationData.reps += Code[i];
+          GenerationData.steps.reps += Code[i];
         }
       }
     }
+  }
+  // RESERVED: liabxyz_
+
+  // Adjusts parenthesis
+  {
+    var Code_1 = GenerationData.steps.reps;
+    var NestOrder = [];
+
+    for (var i = 0; i < Code_1.length; i++) {
+      if (ESCAPES_START.includes(Code_1[i])) {
+        // Found an escape character (string)
+        EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
+        if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
+        i++;
+        for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
+          if (Code[i] === ESCAPES_ESC[EscapeChar]) {
+            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += ESCAPES_ESC[EscapeChar];
+            GenerationData.steps.parenfix += Code_1[++i];
+          } else {
+            GenerationData.steps.parenfix += Code_1[i];
+          }
+          if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+        }
+        if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
+      } else if (CLOSE_START.includes(Code_1[i])) {
+        // Open
+        GenerationData.steps.parenfix += Code_1[i];
+        NestOrder.push(Code_1[i]);
+      } else if (CLOSE_END.includes(Code_1[i])) {
+        // Close
+        GenerationData.steps.parenfix += Code_1[i];
+        NestOrder.pop();
+      } else {
+        GenerationData.steps.parenfix += Code_1[i];
+      }
+    }
+    NestOrder.reverse().forEach(function (Key) {
+      return GenerationData.steps.parenfix += CLOSE_END[CLOSE_START.indexOf(Key)];
+    });
   }
 
   return GenerationData;
