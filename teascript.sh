@@ -11,4 +11,4 @@ fi
 cd TeaScript;
 read -p "Code: " Code
 read -p "Input: " Input
-js -f sh.js macros.js teascript.js -e "print(TeaScript(\`${Code//\`/\\\`}\`,\"${Input//,/","}\",{}).code)"
+js -f sh.js macros.js teascript.js -e "print(TeaScript(\`${Code//\`/\\\`}\`,\"${Input//,/","}\",{}).out)"
