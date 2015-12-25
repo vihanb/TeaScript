@@ -10,8 +10,8 @@
 
 </p>
 
-I've been working on a TeaScrip 3 which will hopefully be coming out soon! :D 
----
+# TeaScript 3 is now out!
+See the release notes for more information
 
 ## Basic Programs
 
