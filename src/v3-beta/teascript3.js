@@ -7,7 +7,9 @@
 "use strict";
 
 (function (global) {
-  var TeaScript = function TeaScript(Code, Data) {
+  var TeaScript = function TeaScript(Code) {
+    var Data = arguments.length <= 1 || arguments[1] === undefined ? { rep: {} } : arguments[1];
+
     ///
     //
     // TeaScript 3
@@ -72,6 +74,8 @@
     var MATCH_LEND = /["'0-9)/\]]/; // Match any end
     var MATCH_STRT = /["'0-9(#/]/;
 
+    var RESERVED = ["for", "while", "let", "var", "class", "do", "if"];
+
     // String Balancing
     {}
 
@@ -92,7 +96,7 @@
           } else {
             var _prop = PendingProp;
             PendingProp = "";
-            if (MATCH_STRT.test(Code[i])) {
+            if (MATCH_STRT.test(Code[i]) && !RESERVED.includes(_prop)) {
               GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
               if (Code[i] !== "(") GenerationData.steps.reps += "(";
             } else {
@@ -180,5 +184,5 @@
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;else global.TeaScript = TeaScript;
-})(undefined, Data);
+})(undefined /*, JSON.parse(read("props.json"))*/);
 ////

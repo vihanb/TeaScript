@@ -6,7 +6,7 @@
 ////
 
 (function(global) {
-  const TeaScript = (Code, Data) => {
+  const TeaScript = (Code, Data = { rep: {} }) => {
     ///
     //
     // TeaScript 3
@@ -64,6 +64,8 @@
     const MATCH_LEND = /["'0-9)/\]]/; // Match any end
     const MATCH_STRT = /["'0-9(#/]/;
 
+    const RESERVED = [`for`, `while`, `let`, `var`, `class`, `do`, `if`];
+
 
     // String Balancing
     {}
@@ -84,7 +86,7 @@
           } else {
             let _prop = PendingProp;
             PendingProp = "";
-            if (MATCH_STRT.test(Code[i])) {
+            if (MATCH_STRT.test(Code[i]) && !RESERVED.includes(_prop)) {
               GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
               if (Code[i] !== "(") GenerationData.steps.reps += "(";
             } else {
@@ -163,7 +165,7 @@
 
     return GenerationData;
   };
-  
+
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;
   else global.TeaScript = TeaScript;
-}(this, Data));
+}(this/*, JSON.parse(read("props.json"))*/));
