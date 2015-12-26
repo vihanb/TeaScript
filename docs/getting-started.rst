@@ -21,4 +21,15 @@ If you wish to run TeaScript from the command line, ensure you have **SpiderMonk
 
 #. Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
 #. Give ``teascript`` the correct permissions::
+
   $ chmod +x teascript
+
+#. Run ``teascript``, and it should install the correct files. Enter the code, and then the input, ``,`` seperated.::
+
+  $ ./teascript
+  TeaScript not installed. Installing TeaScript...
+  # ...
+  Code: "my_teascript_code".l(#lc)+x+"more_code"
+  Input: Input 1,Input 2,Input 3,...
+  $ ./teascript
+  Code: ...
