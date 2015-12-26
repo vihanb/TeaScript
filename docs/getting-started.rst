@@ -24,18 +24,18 @@ If you wish to run TeaScript from the command line, ensure you have **SpiderMonk
 
 .. code-block:: shell
 
-  $ chmod +x teascript
+    $ chmod +x teascript
 
 #. Run ``teascript``, and it should install the correct files. Enter the code, and then the input, ``,`` seperated.
 
 .. code-block:: shell
 
-  $ ./teascript
-  TeaScript not installed. Installing TeaScript...
-  # ...
-  Code: # <TeaScript Code Here>
-  Input: # <Input Here> e.g.: Input 1,Input 2,Input 3,...
-  # <Output Here>
+    $ ./teascript
+    TeaScript not installed. Installing TeaScript...
+    # ...
+    Code: # <TeaScript Code Here>
+    Input: # <Input Here> e.g.: Input 1,Input 2,Input 3,...
+    # <Output Here>
 
 #. The next time you run TeaScript, it'll detect the `TeaScript/` folder and won't need to reinstall the dependencies.
 
