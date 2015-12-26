@@ -68,7 +68,7 @@ var TeaScript = function TeaScript(Code, Input, Options) {
   var MATCH_PROP = /[A-Za-z$_][\w$]*/;
   var MATCH_NUM = /\d/;
   var MATCH_LTRL = /["'0-9]/; // Literal
-  var MATCH_STRT = /["'0-9#(]/;
+  var MATCH_STRT = /["'0-9#(/]/;
 
   // String Balancing
 
@@ -125,12 +125,15 @@ var TeaScript = function TeaScript(Code, Input, Options) {
           }GenerationData.steps.reps += " ";--i;
         } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) {
           GenerationData.steps.reps += Data.rep[Code[i]];
+          i -= Data.rep[Code[i]].length;
         } else {
           GenerationData.steps.reps += Code[i];
         }
       }
     }
   }
+
+  {}
   // RESERVED: liabxyz_
 
   // Adjusts parenthesis

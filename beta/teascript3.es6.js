@@ -58,7 +58,7 @@ const TeaScript = (Code, Input, Options) => {
   const MATCH_PROP = /[A-Za-z$_][\w$]*/;
   const MATCH_NUM  = /\d/;
   const MATCH_LTRL = /["'0-9]/; // Literal
-  const MATCH_STRT = /["'0-9#(]/;
+  const MATCH_STRT = /["'0-9#(/]/;
   
   
   // String Balancing
@@ -112,11 +112,15 @@ const TeaScript = (Code, Input, Options) => {
           GenerationData.steps.reps += " "; --i;
         } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) {
           GenerationData.steps.reps += Data.rep[Code[i]];
+          i -= Data.rep[Code[i]].length;
         } else {
           GenerationData.steps.reps += Code[i]
         }
       }
     }
+  }
+  
+  {
   }
   // RESERVED: liabxyz_
 
