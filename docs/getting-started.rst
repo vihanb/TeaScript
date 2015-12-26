@@ -50,4 +50,9 @@ You can also manually install/run TeaScript if you're having issues with the scr
 #. Edit ``teascript.js`` and perform the following replaces:
 
 :``window``: ``this``
-:``/*props.json*/``:`JSON.parse(read("props.json"))`
+:``/*props.json*/``:``JSON.parse(read("props.json"))``
+
+.. note::
+  Different enviorments might use a different function than ``read``
+  
+  :nodejs:``test``
