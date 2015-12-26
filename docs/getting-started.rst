@@ -46,8 +46,10 @@ Manual Installation
 You can also manually install/run TeaScript if you're having issues with the script
 
 Install the following files
+
  - Everything within `/src/v2 <https://github.com/vihanb/TeaScript/tree/master/src/v2>`_
  - ``sh.js`` from `/src/sh/sh.js <https://github.com/vihanb/TeaScript/blob/master/src/sh/sh.js>`_
+ 
 Edit ``teascript.js`` and replace ``window`` with ``this``, and ``/*props.json*/`` with ``JSON.parse(read("props.json"))``
 
 .. note::
