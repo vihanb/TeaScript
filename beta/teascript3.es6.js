@@ -58,11 +58,11 @@ const TeaScript = (Code, Input, Options) => {
   const MATCH_PROP = /[A-Za-z$_][\w$]*/;
   const MATCH_NUM  = /\d/;
   const MATCH_LTRL = /["'0-9]/; // Literal
-  const MATCH_STRT = /["'0-9#(/]/;
-  
-  
+  const MATCH_STRT = /["'0-9(#/]/;
+
+
   // String Balancing
-  
+
   // Unicode Shortcuts & Prop Expansion
   {
     let EscapeChar = -1;
@@ -81,7 +81,7 @@ const TeaScript = (Code, Input, Options) => {
           PendingProp = "";
           if (MATCH_STRT.test(Code[i])) {
             GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-            GenerationData.steps.reps += "(";
+            if (Code[i] !== "(") GenerationData.steps.reps += "(";
           } else {
             GenerationData.steps.reps += _prop;
           }
@@ -119,7 +119,7 @@ const TeaScript = (Code, Input, Options) => {
       }
     }
   }
-  
+
   {
   }
   // RESERVED: liabxyz_
@@ -128,7 +128,7 @@ const TeaScript = (Code, Input, Options) => {
   {
     const Code_1  = GenerationData.steps.reps;
     let NestOrder = [];
-    
+
     for (let i = 0; i < Code_1.length; i++) {
       if (ESCAPES_START.includes(Code_1[i])) { // Found an escape character (string)
         EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
