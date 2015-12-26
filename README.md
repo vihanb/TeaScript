@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://vihanserver.tk/p/TeaScript/">
-    <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/TeaScriptWide.png" width="546">
+    <img alt="TeaScript" src="https://raw.githubusercontent.com/vihanb/TeaScript/master/logo/TeaScriptWide.png" height="330">
   </a>
 </p>
 
@@ -32,7 +32,7 @@ TeaScript can run on almost every JavaScript platform but it is tested on the br
 
 ### TeaScript 2 installation
 
-The easiest way is to use the script I put together, install [`teascript.sh`](https://github.com/vihanb/TeaScript)
+The easiest way is to use the script I put together, install [`teascript.sh`](https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript.sh)
 ```bash
 $ chmod +x teascript.sh
 $ ./teascript.sh 
@@ -53,12 +53,13 @@ If you encounter an issue, you've already found the best place to report it.
 
 Alternatively you can install it manually.
 
-The first step is to install the required files for TeaScript 2:
- - [`/v/2/teascript.js`](https://github.com/vihanb/TeaScript/blob/master/v/2/teascript.js)
- - [`props.json`](https://github.com/vihanb/TeaScript/blob/master/props.json)
- - [`macros.js`](https://github.com/vihanb/TeaScript/blob/master/macros.js)
+The first step is to install the required files for TeaScript 2. You can download [this folder](https://github.com/vihanb/TeaScript/tree/master/src/v2), or install each file:
+ - [`/src/v2/teascript.js`](https://github.com/vihanb/TeaScript/blob/master/src/v2/teascript.js)
+ - [`/src/v2/props.json`](https://github.com/vihanb/TeaScript/blob/master/src/v2/props.json)
+ - [`/src/v2/macros.js`](https://github.com/vihanb/TeaScript/blob/master/src/v2/macros.js)
+ - [`/src/sh/sh.js`](https://github.com/vihanb/TeaScript/blob/master/src/sh/sh.js)
 
-Edit `teascript.js` and scroll to the last line. Edit where it says `/*props.json*/` with `read("props.json")`.
+Edit `teascript.js` and scroll to the last line. Edit where it says `/*props.json*/` with `JSON.parse(read("props.json"))` and `window` with `this`.
 
 > **Note:** This will differ on what enviorment you use:
 >
@@ -69,5 +70,5 @@ Edit `teascript.js` and scroll to the last line. Edit where it says `/*props.jso
 Now, run the two files (example for SpiderMonkey):
 
 ```sh
-$ js -e "shoco=babel=console={warn:String,log:String,transform:String}" -f macros.js teascript.js -e "print(TeaScript('Code Goes Here',['input1'],{}).out)"
+$ js -f sh.js macros.js teascript.js -e "print(TeaScript('Code Goes Here',['input1'],{}).out)"
 ```
