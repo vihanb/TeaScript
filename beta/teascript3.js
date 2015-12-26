@@ -68,6 +68,7 @@ var TeaScript = function TeaScript(Code, Input, Options) {
   var MATCH_PROP = /[A-Za-z$_][\w$]*/;
   var MATCH_NUM = /\d/;
   var MATCH_LTRL = /["'0-9]/; // Literal
+  var MATCH_LEND = /["'0-9)/\]]/; // Match any end
   var MATCH_STRT = /["'0-9(#/]/;
 
   // String Balancing
@@ -115,8 +116,8 @@ var TeaScript = function TeaScript(Code, Input, Options) {
           if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += Code[i];
         } else if (MATCH_PROP.test(Code[i])) {
           // Property character
-          if (MATCH_LTRL.test(Code[i - 1])) GenerationData.steps.reps += ".";
-          PendingProp += Code[i];
+          if (MATCH_LEND.test(Code[i - 1])) GenerationData.steps.reps += ".";
+          if (Code[i + 1]) PendingProp += Code[i];else GenerationData.steps.reps += Code[i];
         } else if (Code[i] === "#") {
           GenerationData.steps.reps += "(l,i,a,b)=>";
         } else if (MATCH_NUM.test(Code[i])) {
