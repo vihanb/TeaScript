@@ -54,5 +54,6 @@ Edit ``teascript.js`` and replace ``window`` with ``this``, and ``/*props.json*/
 
 .. note::
   Different enviorments might use a different function than ``read``
+  
   :node.js: ``fs.readFile``
   :rhino: ``readFile``
