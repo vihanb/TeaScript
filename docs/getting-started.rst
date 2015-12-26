@@ -20,4 +20,5 @@ Auto-Install Script
 If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
 
 #. Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
-#. test
+#. Give ``teascript`` the correct permissions::
+  $ chmod +x teascript
