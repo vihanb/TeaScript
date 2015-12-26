@@ -21,13 +21,11 @@ If you wish to run TeaScript from the command line, ensure you have **SpiderMonk
 
 #. Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
 #. Give ``teascript`` the correct permissions::
-
 .. code-block:: shell
 
     $ chmod +x teascript
 
 #. Run ``teascript``, and it should install the correct files. Enter the code, and then the input, ``,`` seperated.
-
 .. code-block:: shell
 
     $ ./teascript
@@ -47,10 +45,7 @@ You can also manually install/run TeaScript if you're having issues with the scr
 #. Install the following files
  - Everything within `/src/v2 <https://github.com/vihanb/TeaScript/tree/master/src/v2>`_
  - ``sh.js`` from `/src/sh/sh.js <https://github.com/vihanb/TeaScript/blob/master/src/sh/sh.js>`_
-#. Edit ``teascript.js`` and perform the following replaces:
-
-:``window``: ``this``
-:``/*props.json*/``:``JSON.parse(read("props.json"))``
+#. Edit ``teascript.js`` and replace ``window
 
 .. note::
   Different enviorments might use a different function than ``read``
