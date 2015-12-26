@@ -32,10 +32,10 @@ TeaScript can run on almost every JavaScript platform but it is tested on the br
 
 ### TeaScript 2 installation
 
-The easiest way is to use the script I put together, install [`teascript.sh`](https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript.sh)
+The easiest way is to use the script I put together, install [`teascript`](https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript)
 ```bash
 $ chmod +x teascript.sh
-$ ./teascript.sh 
+$ ./teascript
 ```
 
 The required files should be automagically installed along with additional files for the shell to function such as `sh.js`.
@@ -66,6 +66,8 @@ Edit `teascript.js` and scroll to the last line. Edit where it says `/*props.jso
 > SpiderMonkey: `read`
 > Rhino: `readFile`
 > Node.js: `fs.readFile`
+
+Now you can use [`teascript_run`](https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript_run) or run it manually:
 
 Now, run the two files (example for SpiderMonkey):
 
