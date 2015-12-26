@@ -6,7 +6,7 @@
 
 # Try TeaScript
 <p align="center">
-  <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter</a>
+  <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter</a> <br>
   <a href="http://teascript.readthedocs.org">All Documentation</a>
 </p>
 
