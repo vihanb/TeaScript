@@ -13,13 +13,11 @@ TeaScript has a pretty sweet web interface and is the best enviorment for runnin
 
  * `Web Interface <http://vihanserver.tk/p/TeaScript>`_
  * `Alternate URL <http://server.vihan.ml/p/TeaScript>`_
- 
- Command Line
- ------------
- 
- If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
- 
- Auto-install Script
- ~~~~~~~~~~~~~~~~~~~~
- 
- Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
+
+Auto-Install Script
+-------------------
+
+If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
+
+#. Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
+#. test
