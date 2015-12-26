@@ -20,6 +20,6 @@ TeaScript has a pretty sweet web interface and is the best enviorment for runnin
  If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
  
  Auto-install Script
- ~~~~~~~~~~~~~~~~~~~
+ ~~~~~~~~~~~~~~~~~~~~
  
- Install this from ```test`` <http://google.com>`_
+ Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
