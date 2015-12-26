@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="TeaScript beta documentation" href="index.html"/>
-        <link rel="prev" title="Welcome to TeaScript’s documentation!" href="index.html"/> 
+        <link rel="prev" title="Installation" href="installation.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,9 +81,18 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#web-interface">Web Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#literals">Literals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#strings">Strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numbers">Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#regexp">RegExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#input">Input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#input-options">Input Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-the-input">Getting the Input</a></li>
 </ul>
 </li>
 </ul>
@@ -134,20 +143,100 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>Running TeaScript is pretty simple, they&#8217;re multiple ways you can do this</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="web-interface">
-<h3>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h3>
-<p>TeaScript has a pretty sweet web interface and is the best enviorment for running TeaScript. All extensions are packaged up and usage is pretty straight-forward.</p>
+<p>Getting started with TeaScript is <em>very</em> easy especially if you have prior JavaScript knowledge.</p>
+<p>This was the main goal of TeaScript was a JavaScript golfing language that <em>was</em> JavaScript but with shorter property names. This slowly evolved but TeaScript is backwards compatible so every JavaScript program is a valid TeaScript program</p>
+<div class="section" id="literals">
+<h2>Literals<a class="headerlink" href="#literals" title="Permalink to this headline">¶</a></h2>
+<p>Literals are very simple in TeaScript as they are the same as JavaScript literals</p>
+<div class="section" id="strings">
+<h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
+<p>They are three types of strings</p>
+<div class="highlight-js"><div class="highlight"><pre>&quot;Double Quoted String Literal&quot;
+&#39;Single Quoted String Literal&#39;
+`String templates`
+</pre></div>
+</div>
+<p>String templates have a few extra features such as:</p>
+<div class="highlight-js"><div class="highlight"><pre>`String templates support inline
+newlines and code such as ${2+1}`
+</pre></div>
+</div>
+</div>
+<div class="section" id="numbers">
+<h3>Numbers<a class="headerlink" href="#numbers" title="Permalink to this headline">¶</a></h3>
+<p>Numbers are also, just <em>numbers</em>:</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="mi">1234</span> <span class="c1">// Decimal</span>
+<span class="mf">12.3</span> <span class="c1">// Decimal</span>
+<span class="mi">12</span><span class="nx">e3</span> <span class="c1">// Scientific Notation</span>
+<span class="mh">0x1F</span> <span class="c1">// Hexadecimal</span>
+<span class="mi">0</span><span class="nx">b10</span> <span class="c1">// Binary</span>
+<span class="mi">0</span><span class="nx">o18</span> <span class="c1">// Octal</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="regexp">
+<h3>RegExp<a class="headerlink" href="#regexp" title="Permalink to this headline">¶</a></h3>
+<p>TeaScript has support for RegExp literals and they&#8217;re just the same as JavaScript</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="sr">/[A-Za-z]/gi</span>
+</pre></div>
+</div>
+<p>By TeaScript 3.1, I hope to have <cite>XRegExp</cite>, implemented which should allow your RegExp literals to look like:</p>
+<div class="highlight-js"><div class="highlight"><pre>/\u{L}+/u
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>Functions are the same as JavaScript too.</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span> <span class="c1">// Arguments[a,b,c] adds them together</span>
+<span class="nx">a</span><span class="o">=&gt;</span><span class="nx">a</span>           <span class="c1">// Single argument a, returns a</span>
+</pre></div>
+</div>
+<p>This is quite lengthy so I&#8217;ve added the <code class="docutils literal"><span class="pre">#</span></code> operator which automatically expands to <code class="docutils literal"><span class="pre">(l,i,a,b)=&gt;</span></code> at compile time</p>
+<div class="highlight-none"><div class="highlight"><pre>#l+i+a  // Arguments[l,i,a,b] adds first 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="input">
+<h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="input-options">
+<h3>Input Options<a class="headerlink" href="#input-options" title="Permalink to this headline">¶</a></h3>
+<p>The user can decide how (s)he wants the input. TeaScript supports all of the following input types:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="http://vihanserver.tk/p/TeaScript">Web Interface</a></li>
-<li><a class="reference external" href="http://server.vihan.ml/p/TeaScript">Alternate URL</a></li>
+<li>String (default)</li>
+<li>Number</li>
+<li>Array</li>
 </ul>
-<p>If you wish to run TeaScript from the command line, ensure you have <strong>SpiderMonkey 38</strong> or higher installed. They&#8217;re multiple ways to get started</p>
-<p>Install <code class="docutils literal"><span class="pre">teascript</span></code> from the <a class="reference external" href="https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript">GitHub</a></p>
 </div></blockquote>
+</div>
+<div class="section" id="getting-the-input">
+<h3>Getting the Input<a class="headerlink" href="#getting-the-input" title="Permalink to this headline">¶</a></h3>
+<p>The input is stored in various variables:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Input #</th>
+<th class="head">Variable Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td><code class="docutils literal"><span class="pre">x</span></code></td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td><code class="docutils literal"><span class="pre">y</span></code></td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td><code class="docutils literal"><span class="pre">z</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Need More inputs? An array of all the inputs is stored in the <code class="docutils literal"><span class="pre">_</span></code> variable.</p>
 </div>
 </div>
 </div>
@@ -160,7 +249,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to TeaScript’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. Installing TeaScript &mdash; TeaScript beta documentation</title>
+  <title>Installation &mdash; TeaScript beta documentation</title>
   
 
   
@@ -31,6 +31,7 @@
 
   
     <link rel="top" title="TeaScript beta documentation" href="index.html"/>
+        <link rel="next" title="Title" href="basics.html"/>
         <link rel="prev" title="Welcome to TeaScript’s documentation!" href="index.html"/> 
 
   
@@ -81,7 +82,16 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">1. Installing TeaScript</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#web-interface">Web Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line">Command Line</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#auto-install-script">Auto-Install Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">Title</a></li>
 </ul>
 
             
@@ -112,7 +122,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>1. Installing TeaScript</li>
+    <li>Installation</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -126,9 +136,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installing-teascript">
-<h1>1. Installing TeaScript<a class="headerlink" href="#installing-teascript" title="Permalink to this headline">¶</a></h1>
-<p>abc</p>
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Running TeaScript is pretty simple, they&#8217;re multiple ways you can do this</p>
+<div class="section" id="web-interface">
+<h2>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h2>
+<p>TeaScript has a pretty sweet web interface and is the best enviorment for running TeaScript. All extensions are packaged up and usage is pretty straight-forward.</p>
+</div>
+<div class="section" id="command-line">
+<h2>Command Line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://vihanserver.tk/p/TeaScript">Web Interface</a></li>
+<li><a class="reference external" href="http://server.vihan.ml/p/TeaScript">Alternate URL</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="auto-install-script">
+<h3>Auto-Install Script<a class="headerlink" href="#auto-install-script" title="Permalink to this headline">¶</a></h3>
+<p>If you wish to run TeaScript from the command line, ensure you have <strong>SpiderMonkey 38</strong> or higher installed. They&#8217;re multiple ways to get started</p>
+<p>Install <code class="docutils literal"><span class="pre">teascript</span></code> from the <a class="reference external" href="https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript">GitHub</a></p>
+<p>Give <code class="docutils literal"><span class="pre">teascript</span></code> the correct permissions</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>chmod +x teascript
+</pre></div>
+</div>
+<p>Run <code class="docutils literal"><span class="pre">teascript</span></code>, and it should install the correct files. Enter the code, and then the input, <code class="docutils literal"><span class="pre">,</span></code> seperated.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span class="nv">$ </span>./teascript
+TeaScript not installed. Installing TeaScript...
+<span class="c"># ...</span>
+Code: <span class="c"># &lt;TeaScript Code Here&gt;</span>
+Input: <span class="c"># &lt;Input Here&gt; e.g.: Input 1,Input 2,Input 3,...</span>
+<span class="c"># &lt;Output Here&gt;</span>
+</pre></div>
+</div>
+<p>The next time you run TeaScript, it&#8217;ll detect the <cite>TeaScript/</cite> folder and won&#8217;t need to reinstall the dependencies.</p>
+</div>
+<div class="section" id="manual-installation">
+<h3>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this headline">¶</a></h3>
+<p>You can also manually install/run TeaScript if you&#8217;re having issues with the script</p>
+<p>Install the following files</p>
+<blockquote>
+<div><ul class="simple">
+<li>Everything within <a class="reference external" href="https://github.com/vihanb/TeaScript/tree/master/src/v2">/src/v2</a></li>
+<li><code class="docutils literal"><span class="pre">sh.js</span></code> from <a class="reference external" href="https://github.com/vihanb/TeaScript/blob/master/src/sh/sh.js">/src/sh/sh.js</a></li>
+</ul>
+</div></blockquote>
+<p>Edit <code class="docutils literal"><span class="pre">teascript.js</span></code> and replace <code class="docutils literal"><span class="pre">window</span></code> with <code class="docutils literal"><span class="pre">this</span></code>, and <code class="docutils literal"><span class="pre">/*props.json*/</span></code> with <code class="docutils literal"><span class="pre">JSON.parse(read(&quot;props.json&quot;))</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Different enviorments might use a different function than <code class="docutils literal"><span class="pre">read</span></code></p>
+<table class="last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">node.js:</th><td class="field-body"><code class="docutils literal"><span class="pre">fs.readFile</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">rhino:</th><td class="field-body"><code class="docutils literal"><span class="pre">readFile</span></code></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">spidermonkey:</th><td class="field-body"><code class="docutils literal"><span class="pre">read</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -137,6 +207,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="basics.html" class="btn btn-neutral float-right" title="Title" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to TeaScript’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
