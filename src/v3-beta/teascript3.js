@@ -75,7 +75,7 @@ var TeaScript = function TeaScript(Code, Input, Options) {
 
   // Unicode Shortcuts & Prop Expansion
   {
-    var _EscapeChar = -1;
+    var EscapeChar = -1;
     var PendingProp = "";
     for (var i = 0; i < Code.length; i++) {
       if (PendingProp.length > 0) {
@@ -101,19 +101,19 @@ var TeaScript = function TeaScript(Code, Input, Options) {
       } else {
         if (ESCAPES_START.includes(Code[i])) {
           // Found an escape character (string)
-          _EscapeChar = ESCAPES_START.indexOf(Code[i]);
-          if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += Code[i];
+          EscapeChar = ESCAPES_START.indexOf(Code[i]);
+          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
           i++;
-          for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[_EscapeChar]; i++) {
-            if (Code[i] === ESCAPES_ESC[_EscapeChar]) {
-              if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[_EscapeChar];
+          for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
+            if (Code[i] === ESCAPES_ESC[EscapeChar]) {
+              if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[EscapeChar];
               GenerationData.steps.reps += Code[++i];
             } else {
               GenerationData.steps.reps += Code[i];
             }
             if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
           }
-          if (ESCAPES_KEEP[_EscapeChar]) GenerationData.steps.reps += Code[i];
+          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
         } else if (MATCH_PROP.test(Code[i])) {
           // Property character
           if (MATCH_LEND.test(Code[i - 1])) GenerationData.steps.reps += ".";
@@ -140,16 +140,17 @@ var TeaScript = function TeaScript(Code, Input, Options) {
   // Adjusts parenthesis
   {
     var Code_1 = GenerationData.steps.reps;
-    var NestOrder = [];
 
+    var NestOrder = [];
+    var EscapeChar = -1;
     for (var i = 0; i < Code_1.length; i++) {
       if (ESCAPES_START.includes(Code_1[i])) {
         // Found an escape character (string)
         EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
         if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
         i++;
-        for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
-          if (Code[i] === ESCAPES_ESC[EscapeChar]) {
+        for (var j = i; i - j < MAX_LITERAL && Code_1[i] !== ESCAPES_END[EscapeChar]; i++) {
+          if (Code_1[i] === ESCAPES_ESC[EscapeChar]) {
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += ESCAPES_ESC[EscapeChar];
             GenerationData.steps.parenfix += Code_1[++i];
           } else {

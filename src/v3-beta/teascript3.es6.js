@@ -129,15 +129,16 @@ const TeaScript = (Code, Input, Options) => {
   // Adjusts parenthesis
   {
     const Code_1  = GenerationData.steps.reps;
+    
     let NestOrder = [];
-
+    let EscapeChar = -1;
     for (let i = 0; i < Code_1.length; i++) {
       if (ESCAPES_START.includes(Code_1[i])) { // Found an escape character (string)
         EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
         if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
         i++;
-        for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
-          if (Code[i] === ESCAPES_ESC[EscapeChar]) {
+        for (let j = i; (i - j) < MAX_LITERAL && Code_1[i] !== ESCAPES_END[EscapeChar]; i++) {
+          if (Code_1[i] === ESCAPES_ESC[EscapeChar]) {
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += ESCAPES_ESC[EscapeChar];
             GenerationData.steps.parenfix += Code_1[++i];
           } else {
