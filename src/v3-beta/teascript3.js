@@ -75,8 +75,9 @@
     var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
     var MATCH_STRT = /["'`0-9(#/]/;
 
-    var RESERVED = ["for", "while", "let", "var", "class", "do", "if"];
+    var RESERVED = ["for", "while", "let", "var", "if", "const", "break", "continue", "class", "do"];
 
+    var REGEX_FLAG = /[gmi]+/;
     var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["L", "[A-Za-z]"], ["N", "[A-Za-z0-9]"]]);
 
     /*=== START CODE ===*/
@@ -126,10 +127,10 @@
             GenerationData.steps.reps += "/";
 
             // Hacky way of allowing flags
-            if (!Code.slice(++i).search(/[gmi]+/)) {
+            if (!Code.slice(++i).search(REGEX_FLAG)) {
               // There are flags
-              GenerationData.steps.reps += Code.slice(i).match(/[gmi]+/)[0];
-              i += Code.slice(i).match(/[gmi]+/)[0].length;
+              GenerationData.steps.reps += Code.slice(i).match(REGEX_FLAG)[0];
+              i += Code.slice(i).match(REGEX_FLAG)[0].length;
             }
             --i;
           } else if (ESCAPES_START.includes(Code[i])) {
