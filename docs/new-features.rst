@@ -20,7 +20,17 @@ TeaScript adds custom character classes (e.g. ``\w``) to a RegExp literal. These
     /\L/        // After
     /[A-Za-z]/  // At compile-time
 
+.. topic:: New Character Classes
+    :name: charclasslist
 
+    ======= ============
+    Name    Value
+    ======= ============
+    ``\\A`` ``[A-Z]``
+    ``\\a`` ``[a-z]``
+    ``\\L`` ``[A-Za-z]``
+    ``\\N`` ``[A-Za-z0-9]``
+    ======= ============
 
 Operators
 =========

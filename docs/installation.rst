@@ -32,6 +32,7 @@ Give ``teascript`` the correct permissions
 Run ``teascript``, and it should install the correct files. Enter the code, and then the input, ``,`` seperated.
 
 .. code-block:: shell
+  :linenos:
 
     $ ./teascript
     TeaScript not installed. Installing TeaScript...
