@@ -17,7 +17,7 @@ The ``#`` operator is one that is *very* useful. It's a shorthand for function d
 ==============
 
 .. warning::
-  This feature is unimplemented and is highly experimental
+  This feature is experimental and will only work on some enviorments
 
 XOR? Nope, that's the new `exponentiation` operator. What does it do? It functions as a repeat *and* as a `exponentiation` function.
 
@@ -30,6 +30,8 @@ XOR? Nope, that's the new `exponentiation` operator. What does it do? It functio
     > 9
     
 Want XOR back? That's just ``\^``.
+
+....
 
 .. warning::
   The following features are not actually implemented but are just ideas on new operators for TeaScript 3.1
@@ -49,9 +51,6 @@ Same as `#` but defined a recursive function.
 
 ? Operator
 ===========
-
-.. warning::
-  This feature is unimplemented and is highly experimental. It might be dropped or never even supported
 
 If you're ever in the middle of code and need to close a lot of brackets? Insering a `?` will close all parenthesis at that point:
 

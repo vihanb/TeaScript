@@ -19,6 +19,7 @@
     // - Quote Balancing
     // - Unicode Shortcuts
     // - Property Expansion
+    // - Operator Overloading
     // - Fix parenthesis
     // -- Todo
     // - Decompress strings
