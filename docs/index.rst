@@ -11,6 +11,6 @@ Contents:
    installation
    getting-started
    new-features
+   auto-golf
    basic-examples
    errors
-   auto-golf

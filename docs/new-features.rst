@@ -1,10 +1,32 @@
 New Features
 ************
 
-As said before, TeaScript is an *extension* of JavaScript meaning it adds features to JavaScript. Here you will learn about some of the features TeaScript adds to JavaScript
+As said before, TeaScript is an *extension* of JavaScript meaning it adds features to JavaScript. Here you will learn about some of the features TeaScript 
+adds to JavaScript
+
+Modified RegExp
+===============
+
+RegExp literals have been expanded and are now more powerful than ever with custom character classes and hopefully even more features to come.
+
+Custom Character Classes
+------------------------
+
+TeaScript adds custom character classes (e.g. ``\w``) to a RegExp literal. These are esentially shorthands for character classes, an example
+
+.. code-block:: js
+
+    /[A-Za-z]/  // Before
+    /\L/        // After
+    /[A-Za-z]/  // At compile-time
+
+
+
+Operators
+=========
 
 # Operator
-==========
+----------
 
 The ``#`` operator is one that is *very* useful. It's a shorthand for function declerations that you can use where ever.
 
@@ -14,7 +36,7 @@ The ``#`` operator is one that is *very* useful. It's a shorthand for function d
     #l+i+a+b           // After
 
 ^ Operator
-==============
+----------
 
 .. warning::
   This feature is experimental and will only work on some enviorments
@@ -32,27 +54,12 @@ XOR? Nope, that's the new `exponentiation` operator. What does it do? It functio
     > 9
     
 Want XOR back? That's just ``\^``.
-
-....
+  
+? Operator
+----------
 
 .. warning::
-  The following features are not actually implemented but are just ideas on new operators for TeaScript 3.1
-
-@ Operator
-==========
-
-Same as `#` but defined a recursive function.
-
-.. code-block:: js
-
-   f=#l?f(l-1):l // Before
-   @!l?l:l-1     // After l-1 is automagically executed
-
-.. note::
-  This may not be implemented because I'll need to keep track of used names and all.
-
-? Operator
-===========
+  This feature is not implemented and is just speculation of ideas for TeaScript v3.1
 
 If you're ever in the middle of code and need to close a lot of brackets? Insering a `?` will close all parenthesis at that point:
 

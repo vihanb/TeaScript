@@ -124,6 +124,8 @@
               if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
             GenerationData.steps.reps += "/";
+
+            // Hacky way of allowing flags
             if (!Code.slice(++i).search(/[gmi]+/)) {
               // There are flags
               GenerationData.steps.reps += Code.slice(i).match(/[gmi]+/)[0];

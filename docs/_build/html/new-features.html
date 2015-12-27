@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="TeaScript beta documentation" href="index.html"/>
-        <link rel="next" title="Basic Examples" href="basic-examples.html"/>
+        <link rel="next" title="Auto-Golfing" href="auto-golf.html"/>
         <link rel="prev" title="Getting Started" href="getting-started.html"/> 
 
   
@@ -85,13 +85,21 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">New Features</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#operator"># Operator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">^ Operator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">&#64; Operator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">? Operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modified-regexp">Modified RegExp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#custom-character-classes">Custom Character Classes</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operator"># Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">^ Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">? Operator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auto-golf.html">Auto-Golfing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic-examples.html">Basic Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Error Handling</a></li>
 </ul>
 
             
@@ -138,9 +146,25 @@
             
   <div class="section" id="new-features">
 <h1>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h1>
-<p>As said before, TeaScript is an <em>extension</em> of JavaScript meaning it adds features to JavaScript. Here you will learn about some of the features TeaScript adds to JavaScript</p>
+<p>As said before, TeaScript is an <em>extension</em> of JavaScript meaning it adds features to JavaScript. Here you will learn about some of the features TeaScript
+adds to JavaScript</p>
+<div class="section" id="modified-regexp">
+<h2>Modified RegExp<a class="headerlink" href="#modified-regexp" title="Permalink to this headline">¶</a></h2>
+<p>RegExp literals have been expanded and are now more powerful than ever with custom character classes and hopefully even more features to come.</p>
+<div class="section" id="custom-character-classes">
+<h3>Custom Character Classes<a class="headerlink" href="#custom-character-classes" title="Permalink to this headline">¶</a></h3>
+<p>TeaScript adds custom character classes (e.g. <code class="docutils literal"><span class="pre">\w</span></code>) to a RegExp literal. These are esentially shorthands for character classes, an example</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="sr">/[A-Za-z]/</span>  <span class="c1">// Before</span>
+<span class="sr">/\L/</span>        <span class="c1">// After</span>
+<span class="sr">/[A-Za-z]/</span>  <span class="c1">// At compile-time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="operator">
-<h2># Operator<a class="headerlink" href="#operator" title="Permalink to this headline">¶</a></h2>
+<h3># Operator<a class="headerlink" href="#operator" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal"><span class="pre">#</span></code> operator is one that is <em>very</em> useful. It&#8217;s a shorthand for function declerations that you can use where ever.</p>
 <div class="highlight-js"><div class="highlight"><pre>(a,b,c,d)=&gt;a+b+c+d // Before
 #l+i+a+b           // After
@@ -148,7 +172,7 @@
 </div>
 </div>
 <div class="section" id="id1">
-<h2>^ Operator<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>^ Operator<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>This feature is experimental and will only work on some enviorments</p>
@@ -163,30 +187,18 @@
 </pre></div>
 </div>
 <p>Want XOR back? That&#8217;s just <code class="docutils literal"><span class="pre">\^</span></code>.</p>
-<hr class="docutils" />
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The following features are not actually implemented but are just ideas on new operators for TeaScript 3.1</p>
-</div>
 </div>
 <div class="section" id="id2">
-<h2>&#64; Operator<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Same as <cite>#</cite> but defined a recursive function.</p>
-<div class="highlight-js"><div class="highlight"><pre>f=#l?f(l-1):l // Before
-@!l?l:l-1     // After l-1 is automagically executed
-</pre></div>
+<h3>? Operator<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This feature is not implemented and is just speculation of ideas for TeaScript v3.1</p>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This may not be implemented because I&#8217;ll need to keep track of used names and all.</p>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>? Operator<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>If you&#8217;re ever in the middle of code and need to close a lot of brackets? Insering a <cite>?</cite> will close all parenthesis at that point:</p>
 <div class="highlight-js"><div class="highlight"><pre>xl(#lT(2r(&quot;foo&quot;[1]))) // Before
 xl(#lT(2r(&quot;foo&quot;[1?    // After
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -198,7 +210,7 @@ xl(#lT(2r(&quot;foo&quot;[1?    // After
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="basic-examples.html" class="btn btn-neutral float-right" title="Basic Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="auto-golf.html" class="btn btn-neutral float-right" title="Auto-Golfing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="getting-started.html" class="btn btn-neutral" title="Getting Started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
