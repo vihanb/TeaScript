@@ -6,9 +6,12 @@
 
 # Try TeaScript
 <p align="center">
-  <h4><a href="http://teascript.readthedocs.org">All Documentation</a></h4> <br>
-  <h4><a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter</a></h4>
+  <a href="http://teascript.readthedocs.org">All Documentation</a> <br>
+  <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter</a>
 </p>
 
 # TeaScript 3 is now out!
 See the release notes for more information
+
+# Documentation
+Read The Docs documentation is now available at <http://teascript.readthedocs.org>
