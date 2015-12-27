@@ -8,16 +8,16 @@ Web Interface
 
 TeaScript has a pretty sweet web interface and is the best enviorment for running TeaScript. All extensions are packaged up and usage is pretty straight-forward.
 
+ * `Web Interface <http://vihanserver.tk/p/TeaScript>`_
+ * `Alternate URL <http://server.vihan.ml/p/TeaScript>`_
+ 
 Command Line
 ============
 
- * `Web Interface <http://vihanserver.tk/p/TeaScript>`_
- * `Alternate URL <http://server.vihan.ml/p/TeaScript>`_
+If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
 
 Auto-Install Script
 -------------------
-
-If you wish to run TeaScript from the command line, ensure you have **SpiderMonkey 38** or higher installed. They're multiple ways to get started
 
 Install ``teascript`` from the `GitHub <https://github.com/vihanb/TeaScript/blob/master/src/sh/teascript>`_
 

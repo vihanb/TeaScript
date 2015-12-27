@@ -10,3 +10,4 @@ Contents:
    
    installation
    getting-started
+   new-features

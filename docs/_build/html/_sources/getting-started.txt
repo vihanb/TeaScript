@@ -99,3 +99,21 @@ Input #  Variable Name
 ======== =============
 
 Need More inputs? An array of all the inputs is stored in the ``_`` variable.
+
+....
+
+If the input is an array, the 1st input will be split upon ``,`` and each item will become a seperate input. For the code:
+
+.. code-block:: none
+
+    Input 1,Input 2,Input 3
+
+The values are:
+
+=========== =============
+Input Value Variable Name
+=========== =============
+``Input 1``     ``x``
+``Input 2``     ``y``
+``Input 3``     ``z``
+=========== =============

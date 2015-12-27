@@ -237,6 +237,34 @@ newlines and code such as ${2+1}`
 </tbody>
 </table>
 <p>Need More inputs? An array of all the inputs is stored in the <code class="docutils literal"><span class="pre">_</span></code> variable.</p>
+<hr class="docutils" />
+<p>If the input is an array, the 1st input will be split upon <code class="docutils literal"><span class="pre">,</span></code> and each item will become a seperate input. For the code:</p>
+<div class="highlight-none"><div class="highlight"><pre>Input 1,Input 2,Input 3
+</pre></div>
+</div>
+<p>The values are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Input Value</th>
+<th class="head">Variable Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Input</span> <span class="pre">1</span></code></td>
+<td><code class="docutils literal"><span class="pre">x</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Input</span> <span class="pre">2</span></code></td>
+<td><code class="docutils literal"><span class="pre">y</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Input</span> <span class="pre">3</span></code></td>
+<td><code class="docutils literal"><span class="pre">z</span></code></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
