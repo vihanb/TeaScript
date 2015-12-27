@@ -71,15 +71,20 @@
 
     var MATCH_PROP = /[A-Za-z$_][\w$]*/;
     var MATCH_NUM = /\d/;
-    var MATCH_LTRL = /["'0-9]/; // Literal
-    var MATCH_LEND = /["'0-9)/\]]/; // Match any end
-    var MATCH_STRT = /["'0-9(#/]/;
+    var MATCH_LTRL = /["'`0-9]/; // Literal
+    var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
+    var MATCH_STRT = /["'`0-9(#/]/;
 
     var RESERVED = ["for", "while", "let", "var", "class", "do", "if"];
+
+    var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["L", "[A-Za-z]"], ["N", "[A-Za-z0-9]"]]);
+
+    /*=== START CODE ===*/
 
     // String Balancing
     {}
 
+    // This works backwards
     // Unicode Shortcuts & Prop Expansion
     {
       var EscapeChar = -1;
@@ -106,7 +111,26 @@
             i--;
           }
         } else {
-          if (ESCAPES_START.includes(Code[i])) {
+          if (Code[i] === "/") {
+            // Start custom RegExps
+            GenerationData.steps.reps += "/";
+            i++;
+            for (var j = i; i - j < MAX_LITERAL && Code[i] !== "/"; i++) {
+              if (Code[i] === "\\") {
+                if (REGEX_CLASS.has(Code[i + 1])) GenerationData.steps.reps += REGEX_CLASS.get(Code[i++ + 1]);else GenerationData.steps.reps += "\\" + Code[++i];
+              } else {
+                GenerationData.steps.reps += Code[i];
+              }
+              if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+            }
+            GenerationData.steps.reps += "/";
+            if (!Code.slice(++i).search(/[gmi]+/)) {
+              // There are flags
+              GenerationData.steps.reps += Code.slice(i).match(/[gmi]+/)[0];
+              i += Code.slice(i).match(/[gmi]+/)[0].length;
+            }
+            --i;
+          } else if (ESCAPES_START.includes(Code[i])) {
             // Found an escape character (string)
             EscapeChar = ESCAPES_START.indexOf(Code[i]);
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
