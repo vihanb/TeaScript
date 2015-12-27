@@ -13,4 +13,4 @@ Contents:
    new-features
    basic-examples
    errors
-   unicode
+   auto-golf
