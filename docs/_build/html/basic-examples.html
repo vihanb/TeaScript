@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Examples &mdash; TeaScript beta documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="TeaScript beta documentation" href="index.html"/>
+        <link rel="prev" title="New Features" href="new-features.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TeaScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new-features.html">New Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#string-tasks">String Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hello-world">Hello, World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cat">cat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#number-tasks">Number Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fibonacci">Fibonacci</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primality-test">Primality Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#array-tasks">Array Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cycling-arrays">Cycling Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#average-of-numbers">Average of Numbers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TeaScript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Basic Examples</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/basic-examples.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basic-examples">
+<h1>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="string-tasks">
+<h2>String Tasks<a class="headerlink" href="#string-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hello-world">
+<h3>Hello, World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">&quot;</span></code>    begins a string literal.</p>
+</div>
+<p>Outputs <code class="docutils literal"><span class="pre">Hello,</span> <span class="pre">World</span></code></p>
+<div class="highlight-js"><div class="highlight"><pre>&quot;Hello, World!
+</pre></div>
+</div>
+</div>
+<div class="section" id="cat">
+<h3>cat<a class="headerlink" href="#cat" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">x</span></code> contains the input</p>
+</div>
+<p>Outputs the input</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="nx">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="number-tasks">
+<h2>Number Tasks<a class="headerlink" href="#number-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fibonacci">
+<h3>Fibonacci<a class="headerlink" href="#fibonacci" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">F</span></code> is a Fibonacci function. <code class="docutils literal"><span class="pre">x</span></code> is the input</p>
+</div>
+<p>Given <code class="docutils literal"><span class="pre">n</span></code> this calculated the <code class="docutils literal"><span class="pre">n</span></code>th Fibonacci number</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="nx">F</span><span class="p">(</span><span class="nx">x</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="primality-test">
+<h3>Primality Test<a class="headerlink" href="#primality-test" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">mP</span></code> is a primality check function</p>
+</div>
+<p>Calculates whether a given number is prime</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="nx">mP</span><span class="p">(</span><span class="nx">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="array-tasks">
+<h2>Array Tasks<a class="headerlink" href="#array-tasks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cycling-arrays">
+<h3>Cycling Arrays<a class="headerlink" href="#cycling-arrays" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">C</span></code> cycles an array, <code class="docutils literal"><span class="pre">x</span></code> is the input</p>
+</div>
+<p>Cycle an array 1 spots</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="nx">xC1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="average-of-numbers">
+<h3>Average of Numbers<a class="headerlink" href="#average-of-numbers" title="Permalink to this headline">¶</a></h3>
+<div class="sidebar">
+<p class="first sidebar-title">Explanation</p>
+<p class="last"><code class="docutils literal"><span class="pre">x</span></code> is the input, <code class="docutils literal"><span class="pre">x</span></code> is a sum getter. <code class="docutils literal"><span class="pre">n</span></code> is the length. Compiled, this is <code class="docutils literal"><span class="pre">x.x/x.n</span></code> or <code class="docutils literal"><span class="pre">x.sum/x.length</span></code></p>
+</div>
+<p>Calculates the average of numbers</p>
+<div class="highlight-js"><div class="highlight"><pre><span class="nx">xx</span><span class="o">/</span><span class="nx">xn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="new-features.html" class="btn btn-neutral" title="New Features" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Vihan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

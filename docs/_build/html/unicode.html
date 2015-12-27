@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; TeaScript beta documentation</title>
+  <title>Unicode Shortcuts &mdash; TeaScript beta documentation</title>
   
 
   
@@ -30,7 +30,8 @@
   
 
   
-    <link rel="top" title="TeaScript beta documentation" href="index.html"/> 
+    <link rel="top" title="TeaScript beta documentation" href="index.html"/>
+        <link rel="prev" title="Error Handling" href="errors.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -65,7 +66,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -79,13 +80,13 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="new-features.html">New Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic-examples.html">Basic Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="errors.html">Error Handling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unicode.html">Unicode Shortcuts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Unicode Shortcuts</a></li>
 </ul>
 
             
@@ -116,8 +117,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>Unicode Shortcuts</li>
       <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/unicode.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
@@ -126,23 +131,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="unicode-shortcuts">
+<h1>Unicode Shortcuts<a class="headerlink" href="#unicode-shortcuts" title="Permalink to this headline">¶</a></h1>
+<p>Unicode shortcuts are a way to get code as short as possible without doing any work! What are they? Unicode shortcuts are 1-byte long unicode characters which expand to longer TeaScript code at compile time. Confusing, here&#8217;s an example:</p>
+<div class="highlight-js"><div class="highlight"><pre>£lc)    // Original Code
+xl(#lc) // Code at compile-time
+</pre></div>
+</div>
+<p>What if I want to use a unicode character in my code. Unicode characters in literals (i.e. Strings, RegExps, Snippets) are not converted. If for some reason you do want a unicode property name, it can be used by using a <code class="docutils literal"><span class="pre">\\</span></code> before the character</p>
+<div class="highlight-js"><div class="highlight"><pre>\£lc     // Original Code
+£lc // Code at compile-time
+</pre></div>
+</div>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="errors.html" class="btn btn-neutral" title="Error Handling" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -180,7 +193,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -196,14 +208,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

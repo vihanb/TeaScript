@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Error Handling &mdash; TeaScript beta documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="TeaScript beta documentation" href="index.html"/>
+        <link rel="prev" title="Basic Examples" href="basic-examples.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TeaScript
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new-features.html">New Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic-examples.html">Basic Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Error Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#approaching-literal-maximum">Approaching Literal Maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-not-found-babel">Dependency not found: babel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#existing-sub-slot-used">Existing sub___: Slot used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#invalid-location-error">Invalid location, ___, error ___</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unexpected-type-at">Unexpected Type: ___ at ___</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicate-getter">Duplicate Getter: ___</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#any-other-error"><em>Any</em> other error</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syntax-errors">Syntax Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runtime-errors">Runtime Errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TeaScript</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Error Handling</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/understanding.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="error-handling">
+<h1>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="approaching-literal-maximum">
+<h2>Approaching Literal Maximum<a class="headerlink" href="#approaching-literal-maximum" title="Permalink to this headline">¶</a></h2>
+<p>This is the only error that can be thrown during compilation at the moment. This is caused when a literal (i.e. String, RegEx) is unbalanced.</p>
+<div class="highlight-js"><div class="highlight"><pre>&quot;unclosed string
+/unclosed regex
+$unclosed snippet
+</pre></div>
+</div>
+</div>
+<div class="section" id="dependency-not-found-babel">
+<h2>Dependency not found: babel<a class="headerlink" href="#dependency-not-found-babel" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">babeljs</span></code>, was not able to be loaded, check your network connection and ensure babel is connected. If you believe this shouldn&#8217;t be occuring don&#8217;t hesitate to <a class="reference external" href="https://github.com/vihanb/TeaScript/issues">report it</a> on Github.</p>
+</div>
+<div class="section" id="existing-sub-slot-used">
+<h2>Existing sub___: Slot used<a class="headerlink" href="#existing-sub-slot-used" title="Permalink to this headline">¶</a></h2>
+<p>During enviorment generation, a few errors can occur, this occurs when TeaScript is trying to assign a variable but it has already been assigned. You can override this by force setting <code class="docutils literal"><span class="pre">TEASCRIPT_ENV</span></code> to false, each time enviroment generation takes place</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is a technical error, you are either using an unsupported browser/enviorment or there is a bug in TeaScript. If you believe it&#8217;s a bug, don&#8217;t hesitate to <a class="reference external" href="https://github.com/vihanb/TeaScript/issues">report it</a> on Github</p>
+</div>
+</div>
+<div class="section" id="invalid-location-error">
+<h2>Invalid location, ___, error ___<a class="headerlink" href="#invalid-location-error" title="Permalink to this headline">¶</a></h2>
+<p>If this ever occurs, TeaScript has encountered an issue with the <code class="docutils literal"><span class="pre">props.json</span></code> file, possible fixes are reinstalling the <code class="docutils literal"><span class="pre">props.json</span></code>. If this continues, don&#8217;t hesitate to <a class="reference external" href="https://github.com/vihanb/TeaScript/issues">report it</a> on Github.</p>
+</div>
+<div class="section" id="unexpected-type-at">
+<h2>Unexpected Type: ___ at ___<a class="headerlink" href="#unexpected-type-at" title="Permalink to this headline">¶</a></h2>
+<p>This is another error with the <code class="docutils literal"><span class="pre">props.json</span></code>, check to make sure the json is valid. Try reinstalling the <code class="docutils literal"><span class="pre">props.json</span></code>, and if that doesn&#8217;t work, don&#8217;t hesitate to <a class="reference external" href="https://github.com/vihanb/TeaScript/issues">report it</a> on Github.</p>
+</div>
+<div class="section" id="duplicate-getter">
+<h2>Duplicate Getter: ___<a class="headerlink" href="#duplicate-getter" title="Permalink to this headline">¶</a></h2>
+<p>An attempt was made to assign a getter to an already assigned key. To diagnose this, try looking for duplicate getters in the <code class="docutils literal"><span class="pre">props.json</span></code> and change/remove them.</p>
+</div>
+<div class="section" id="any-other-error">
+<h2><em>Any</em> other error<a class="headerlink" href="#any-other-error" title="Permalink to this headline">¶</a></h2>
+<p>All other errors are either JS Runtime or syntax errors, which can be solved by entering <cite>Debugging Mode</cite></p>
+<div class="section" id="syntax-errors">
+<h3>Syntax Errors<a class="headerlink" href="#syntax-errors" title="Permalink to this headline">¶</a></h3>
+<p>A syntax error starts with <code class="docutils literal"><span class="pre">SyntaxError:</span></code>, and is an error with the syntax itself, the error should display from where the error originated and by looking at the previous compilation steps, you may be able to identify where the error occured.</p>
+<p>This error could of originated in any of the following compilation stages:</p>
+<ul class="simple">
+<li>String Balancing</li>
+<li>Unicode Shortcuts</li>
+<li>Property Expansion</li>
+<li>Paranthesis Balancing</li>
+<li>babel compilation</li>
+</ul>
+<p>If you believe the error originated during babel compilation, report the error at <a class="reference external" href="https://github.com/babel/babel">babel&#8217;s Github</a>.</p>
+</div>
+<div class="section" id="runtime-errors">
+<h3>Runtime Errors<a class="headerlink" href="#runtime-errors" title="Permalink to this headline">¶</a></h3>
+<p>Any other error is a JS runtime error which is usually caused by referencing a variable that doesn&#8217;t exist. Runtime errors are errors with the code itself rather than the syntax. Try to break down your code and try to identify where the error is originating. If you believe this error shouldn&#8217;t be happening, don&#8217;t hesitate to <a class="reference external" href="https://github.com/vihanb/TeaScript/issues">report it</a> on Github.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="basic-examples.html" class="btn btn-neutral" title="Basic Examples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Vihan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

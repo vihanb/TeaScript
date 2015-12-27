@@ -11,3 +11,6 @@ Contents:
    installation
    getting-started
    new-features
+   basic-examples
+   errors
+   unicode

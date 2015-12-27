@@ -18,6 +18,8 @@ The ``#`` operator is one that is *very* useful. It's a shorthand for function d
 
 .. warning::
   This feature is experimental and will only work on some enviorments
+  
+  This operator may also be replaced with the ``@`` character to avoid the requirment of needing to overload
 
 XOR? Nope, that's the new `exponentiation` operator. What does it do? It functions as a repeat *and* as a `exponentiation` function.
 

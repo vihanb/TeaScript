@@ -1,0 +1,4 @@
+Writing Your First Program
+**************************
+
+To get started with TeaScript, you're going to want to set up your enviorment. Instructions are `install`_
