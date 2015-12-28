@@ -77,12 +77,6 @@
 
     /*=== START CODE ===*/
 
-    // String Balancing
-    {
-      // This works backwards
-      for (let i = 0; i < Code.length
-    }
-
     // Unicode Shortcuts & Prop Expansion
     {
       let EscapeChar = -1;
@@ -120,6 +114,7 @@
               } else {
                 GenerationData.steps.reps += Code[i];
               }
+              if (!Code[i + 1]) Code += "/";
               if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
             GenerationData.steps.reps += "/";
@@ -141,6 +136,7 @@
               } else {
                 GenerationData.steps.reps += Code[i];
               }
+              if (!Code[i + 1]) Code += ESCAPES_END[EscapeChar];
               if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];

@@ -26,10 +26,10 @@ TeaScript adds custom character classes (e.g. ``\w``) to a RegExp literal. These
     ======= ============
     Name    Value
     ======= ============
-    ``\A`` ``[A-Z]``
-    ``\a`` ``[a-z]``
-    ``\L`` ``[A-Za-z]``
-    ``\N`` ``[A-Za-z0-9]``
+    ``\\ A`` ``[A-Z]``
+    ``\\ a`` ``[a-z]``
+    ``\\ L`` ``[A-Za-z]``
+    ``\\ N`` ``[A-Za-z0-9]``
     ======= ============
 
 Operators
