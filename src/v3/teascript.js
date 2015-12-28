@@ -29,7 +29,6 @@
 
     var GenerationData = {
       steps: {
-        strfix: "",
         reps: "",
         parenfix: ""
       },

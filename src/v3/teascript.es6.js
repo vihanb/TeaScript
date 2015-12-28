@@ -26,7 +26,6 @@
 
     const GenerationData = {
       steps: {
-        strfix: "",
         reps: "",
         parenfix: ""
       },
