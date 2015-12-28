@@ -164,6 +164,9 @@
           } else if (Code[_i] === "#") {
             // # Operator
             GenerationData.steps.reps += "(l,i,a,b)=>";
+          } else if (Code[_i] === "@") {
+            // @ Operator
+            GenerationData.steps.reps += "(q,r,s,t)=>q.";
           } else if (MATCH_NUM.test(Code[_i])) {
             // Number
             for (var j = _i; _i - j < MAX_LITERAL && /[\d.]/.test(Code[_i]); _i++) {
