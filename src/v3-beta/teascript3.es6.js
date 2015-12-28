@@ -51,6 +51,11 @@
     const ESCAPES_ESC   = ESCAPES.map(Escape => Escape[2]);
     const ESCAPES_KEEP  = ESCAPES.map(Escape => !Escape[3]);
 
+    const COMMENT = [
+      [`//`, `\n`],
+      [`/*`, `*/`]
+    ];
+
     const CLOSE = [
       [`[`, `]`],
       [`(`, `)`],
@@ -102,7 +107,11 @@
             i--;
           }
         } else {
-          if (Code[i] === "/") { // Start custom RegExps
+          if (COMMENT.some(Start => Code.slice(i, i + Start[0].length) === Start[0])) { // Comment
+            let Comment = COMMENT.find(Start => Code.slice(i, i + Start[0].length) === Start[0]);
+            i += Comment[0].length;
+            for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
+          } else if (Code[i] === "/") { // Start custom RegExps
             GenerationData.steps.reps += "/";
             i++;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== "/"; i++) {
@@ -118,7 +127,7 @@
               if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
             GenerationData.steps.reps += "/";
-            
+
             // Hacky way of allowing flags
             if (!Code.slice(++i).search(REGEX_FLAG)) { // There are flags
               GenerationData.steps.reps += Code.slice(i).match(REGEX_FLAG)[0];
@@ -144,15 +153,15 @@
             if (MATCH_LEND.test(Code[i - 1])) GenerationData.steps.reps += ".";
             if (Code[i + 1]) PendingProp += Code[i];
             else GenerationData.steps.reps += Code[i];
-          } else if (Code[i] === "#") {
+          } else if (Code[i] === "#") { // # Operator
             GenerationData.steps.reps += `(l,i,a,b)=>`;
-          } else if (MATCH_NUM.test(Code[i])) {
+          } else if (MATCH_NUM.test(Code[i])) { // Number
             for (let j = i; (i - j) < MAX_LITERAL && /[\d.]/.test(Code[i]); i++) GenerationData.steps.reps += Code[i];
             GenerationData.steps.reps += " "; --i;
-          } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) {
+          } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) { // Unicode char
             GenerationData.steps.reps += Data.rep[Code[i]];
             i -= Data.rep[Code[i]].length;
-          } else {
+          } else { // Other
             GenerationData.steps.reps += Code[i]
           }
         }

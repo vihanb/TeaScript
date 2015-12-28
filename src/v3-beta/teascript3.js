@@ -60,6 +60,8 @@
       return !Escape[3];
     });
 
+    var COMMENT = [["//", "\n"], ["/*", "*/"]];
+
     var CLOSE = [["[", "]"], ["(", ")"]];
 
     var CLOSE_START = CLOSE.map(function (Item) {
@@ -86,83 +88,102 @@
     {
       var EscapeChar = -1;
       var PendingProp = "";
-      for (var i = 0; i < Code.length; i++) {
+
+      var _loop = function (_i) {
         if (PendingProp.length > 0) {
           // Within a property name
-          if (MATCH_PROP.test(Code[i])) {
+          if (MATCH_PROP.test(Code[_i])) {
             // Issue 4 - https://github.com/vihanb/TeaScript/issues/4
             // VERY TEMPORARY
             // I'll add a way of detecting
             // between a JS function and a TeaScript one
-            PendingProp += Code[i];
-            if (i === Code.length - 1) GenerationData.steps.reps += PendingProp;
+            PendingProp += Code[_i];
+            if (_i === Code.length - 1) GenerationData.steps.reps += PendingProp;
           } else {
             var _prop = PendingProp;
             PendingProp = "";
-            if (MATCH_STRT.test(Code[i]) && !RESERVED.includes(_prop)) {
+            if (MATCH_STRT.test(Code[_i]) && !RESERVED.includes(_prop)) {
               GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-              if (Code[i] !== "(") GenerationData.steps.reps += "(";
+              if (Code[_i] !== "(") GenerationData.steps.reps += "(";
             } else {
               GenerationData.steps.reps += _prop;
             }
-            i--;
+            _i--;
           }
         } else {
-          if (Code[i] === "/") {
+          if (COMMENT.some(function (Start) {
+            return Code.slice(_i, _i + Start[0].length) === Start[0];
+          })) {
+            // Comment
+            var _Comment = COMMENT.find(function (Start) {
+              return Code.slice(_i, _i + Start[0].length) === Start[0];
+            });
+            _i += _Comment[0].length;
+            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
+          } else if (Code[_i] === "/") {
             // Start custom RegExps
             GenerationData.steps.reps += "/";
-            i++;
-            for (var j = i; i - j < MAX_LITERAL && Code[i] !== "/"; i++) {
-              if (Code[i] === "\\") {
-                if (REGEX_CLASS.has(Code[i + 1])) GenerationData.steps.reps += REGEX_CLASS.get(Code[i++ + 1]);else GenerationData.steps.reps += "\\" + Code[++i];
+            _i++;
+            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== "/"; _i++) {
+              if (Code[_i] === "\\") {
+                if (REGEX_CLASS.has(Code[_i + 1])) GenerationData.steps.reps += REGEX_CLASS.get(Code[_i++ + 1]);else GenerationData.steps.reps += "\\" + Code[++_i];
               } else {
-                GenerationData.steps.reps += Code[i];
+                GenerationData.steps.reps += Code[_i];
               }
-              if (!Code[i + 1]) Code += "/";
-              if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+              if (!Code[_i + 1]) Code += "/";
+              if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
             GenerationData.steps.reps += "/";
 
             // Hacky way of allowing flags
-            if (!Code.slice(++i).search(REGEX_FLAG)) {
+            if (!Code.slice(++_i).search(REGEX_FLAG)) {
               // There are flags
-              GenerationData.steps.reps += Code.slice(i).match(REGEX_FLAG)[0];
-              i += Code.slice(i).match(REGEX_FLAG)[0].length;
+              GenerationData.steps.reps += Code.slice(_i).match(REGEX_FLAG)[0];
+              _i += Code.slice(_i).match(REGEX_FLAG)[0].length;
             }
-            --i;
-          } else if (ESCAPES_START.includes(Code[i])) {
+            --_i;
+          } else if (ESCAPES_START.includes(Code[_i])) {
             // Found an escape character (string)
-            EscapeChar = ESCAPES_START.indexOf(Code[i]);
-            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
-            i++;
-            for (var j = i; i - j < MAX_LITERAL && Code[i] !== ESCAPES_END[EscapeChar]; i++) {
-              if (Code[i] === ESCAPES_ESC[EscapeChar]) {
+            EscapeChar = ESCAPES_START.indexOf(Code[_i]);
+            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
+            _i++;
+            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ESCAPES_END[EscapeChar]; _i++) {
+              if (Code[_i] === ESCAPES_ESC[EscapeChar]) {
                 if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[EscapeChar];
-                GenerationData.steps.reps += Code[++i];
+                GenerationData.steps.reps += Code[++_i];
               } else {
-                GenerationData.steps.reps += Code[i];
+                GenerationData.steps.reps += Code[_i];
               }
-              if (!Code[i + 1]) Code += ESCAPES_END[EscapeChar];
-              if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+              if (!Code[_i + 1]) Code += ESCAPES_END[EscapeChar];
+              if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
-            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
-          } else if (MATCH_PROP.test(Code[i])) {
+            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
+          } else if (MATCH_PROP.test(Code[_i])) {
             // Property character
-            if (MATCH_LEND.test(Code[i - 1])) GenerationData.steps.reps += ".";
-            if (Code[i + 1]) PendingProp += Code[i];else GenerationData.steps.reps += Code[i];
-          } else if (Code[i] === "#") {
+            if (MATCH_LEND.test(Code[_i - 1])) GenerationData.steps.reps += ".";
+            if (Code[_i + 1]) PendingProp += Code[_i];else GenerationData.steps.reps += Code[_i];
+          } else if (Code[_i] === "#") {
+            // # Operator
             GenerationData.steps.reps += "(l,i,a,b)=>";
-          } else if (MATCH_NUM.test(Code[i])) {
-            for (var j = i; i - j < MAX_LITERAL && /[\d.]/.test(Code[i]); i++) {
-              GenerationData.steps.reps += Code[i];
-            }GenerationData.steps.reps += " ";--i;
-          } else if (Code[i].charCodeAt() > 0xA0 && Code[i].charCodeAt() <= 0xFF) {
-            GenerationData.steps.reps += Data.rep[Code[i]];
-            i -= Data.rep[Code[i]].length;
+          } else if (MATCH_NUM.test(Code[_i])) {
+            // Number
+            for (var j = _i; _i - j < MAX_LITERAL && /[\d.]/.test(Code[_i]); _i++) {
+              GenerationData.steps.reps += Code[_i];
+            }GenerationData.steps.reps += " ";--_i;
+          } else if (Code[_i].charCodeAt() > 0xA0 && Code[_i].charCodeAt() <= 0xFF) {
+            // Unicode char
+            GenerationData.steps.reps += Data.rep[Code[_i]];
+            _i -= Data.rep[Code[_i]].length;
           } else {
-            GenerationData.steps.reps += Code[i];
+            // Other
+            GenerationData.steps.reps += Code[_i];
           }
         }
+        i = _i;
+      };
+
+      for (var i = 0; i < Code.length; i++) {
+        _loop(i);
       }
     }
     // RESERVED: liabxyz_
@@ -173,32 +194,32 @@
 
       var NestOrder = [];
       var EscapeChar = -1;
-      for (var i = 0; i < Code_1.length; i++) {
-        if (ESCAPES_START.includes(Code_1[i])) {
+      for (var _i2 = 0; _i2 < Code_1.length; _i2++) {
+        if (ESCAPES_START.includes(Code_1[_i2])) {
           // Found an escape character (string)
-          EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
-          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
-          i++;
-          for (var j = i; i - j < MAX_LITERAL && Code_1[i] !== ESCAPES_END[EscapeChar]; i++) {
-            if (Code_1[i] === ESCAPES_ESC[EscapeChar]) {
+          EscapeChar = ESCAPES_START.indexOf(Code_1[_i2]);
+          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[_i2];
+          _i2++;
+          for (var j = _i2; _i2 - j < MAX_LITERAL && Code_1[_i2] !== ESCAPES_END[EscapeChar]; _i2++) {
+            if (Code_1[_i2] === ESCAPES_ESC[EscapeChar]) {
               if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += ESCAPES_ESC[EscapeChar];
-              GenerationData.steps.parenfix += Code_1[++i];
+              GenerationData.steps.parenfix += Code_1[++_i2];
             } else {
-              GenerationData.steps.parenfix += Code_1[i];
+              GenerationData.steps.parenfix += Code_1[_i2];
             }
-            if (i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+            if (_i2 - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
           }
-          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
-        } else if (CLOSE_START.includes(Code_1[i])) {
+          if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[_i2];
+        } else if (CLOSE_START.includes(Code_1[_i2])) {
           // Open
-          GenerationData.steps.parenfix += Code_1[i];
-          NestOrder.push(Code_1[i]);
-        } else if (CLOSE_END.includes(Code_1[i])) {
+          GenerationData.steps.parenfix += Code_1[_i2];
+          NestOrder.push(Code_1[_i2]);
+        } else if (CLOSE_END.includes(Code_1[_i2])) {
           // Close
-          GenerationData.steps.parenfix += Code_1[i];
+          GenerationData.steps.parenfix += Code_1[_i2];
           NestOrder.pop();
         } else {
-          GenerationData.steps.parenfix += Code_1[i];
+          GenerationData.steps.parenfix += Code_1[_i2];
         }
       }
       NestOrder.reverse().forEach(function (Key) {
