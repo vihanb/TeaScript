@@ -3,7 +3,7 @@
 
 (function (global) {
 
-  TeaScript.GenerateEnviorment = function (data) {
+  var TeaScript = function TeaScript(data) {
 
     var TEASCRIPT_ENV = false;
 
@@ -118,7 +118,5 @@
     return TEASCRIPT_ENV;
   };
 
-  TeaScript.Data = data;
-
-  global.TeaScript = TeaScript;
+  if (global.TeaScript) global.TeaScript.GenerateEnviorment = TeaScript;else global.TeaScript = TeaScript;
 })(window);

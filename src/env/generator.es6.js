@@ -1,6 +1,6 @@
 (function (global) {
 
-  TeaScript.GenerateEnviorment = function (data) {
+  const TeaScript = function (data) {
 
     let TEASCRIPT_ENV = false;
 
@@ -117,9 +117,7 @@
     TEASCRIPT_ENV = true; // Avoid duplicate enviorment generation
     return TEASCRIPT_ENV;
   };
-
-  TeaScript.Data = data;
-
-  global.TeaScript = TeaScript;
-
+  
+  if (global.TeaScript) global.TeaScript.GenerateEnviorment = TeaScript;
+  else global.TeaScript = TeaScript;
 }(window));
