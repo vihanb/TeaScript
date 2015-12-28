@@ -68,6 +68,7 @@
     const MATCH_LTRL = /["'`0-9]/; // Literal
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
     const MATCH_STRT = /["'`0-9(#/]/;
+    const MATCH_END  = /[)\]]/;
 
     const RESERVED = [`for`, `while`, `let`, `var`, `if`, `const`, `break`, `continue`, `class`, `do`];
 
@@ -93,11 +94,11 @@
             // I'll add a way of detecting
             // between a JS function and a TeaScript one
             PendingProp += Code[i];
-            if (i === Code.length - 1) GenerationData.steps.reps += PendingProp;
+            if (i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
           } else {
             let _prop = PendingProp;
             PendingProp = "";
-            if (MATCH_STRT.test(Code[i]) && !RESERVED.includes(_prop)) {
+            if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
               GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
               if (Code[i] !== "(") GenerationData.steps.reps += "(";
             } else {
