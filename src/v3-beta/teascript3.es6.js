@@ -208,4 +208,4 @@
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;
   else global.TeaScript = TeaScript;
-}(this/*, JSON.parse(read("props.json"))*/));
+}(window/*, JSON.parse(read("props.json"))*/));

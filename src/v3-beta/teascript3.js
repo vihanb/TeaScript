@@ -231,5 +231,5 @@
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;else global.TeaScript = TeaScript;
-})(undefined /*, JSON.parse(read("props.json"))*/);
+})(window /*, JSON.parse(read("props.json"))*/);
 ////
