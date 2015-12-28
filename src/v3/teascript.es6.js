@@ -43,7 +43,7 @@
       [`'`,`'`,`\\`],
       [`/`,`/`,`\\`],
       ["`","`",`\\`],
-      [`$`,`$`,`\\`, 1]
+      //[`$`,`$`,`\\`, 1]
     ];
     const ESCAPES_START = ESCAPES.map(Escape => Escape[0]);
     const ESCAPES_END   = ESCAPES.map(Escape => Escape[1]);

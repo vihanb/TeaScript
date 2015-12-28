@@ -45,7 +45,9 @@
     // CONSTANTS
     var MAX_LITERAL = 65536; // 2^16
 
-    var ESCAPES = [["\"", "\"", "\\"], ["'", "'", "\\"], ["/", "/", "\\"], ["`", "`", "\\"], ["$", "$", "\\", 1]];
+    var ESCAPES = [["\"", "\"", "\\"], ["'", "'", "\\"], ["/", "/", "\\"], ["`", "`", "\\"]];
+
+    //[`$`,`$`,`\\`, 1]
     var ESCAPES_START = ESCAPES.map(function (Escape) {
       return Escape[0];
     });
