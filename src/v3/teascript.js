@@ -6,6 +6,8 @@
 //
 "use strict";
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 (function (global) {
   var TeaScript = function TeaScript(Code) {
     var Data = arguments.length <= 1 || arguments[1] === undefined ? { rep: {} } : arguments[1];
@@ -78,6 +80,7 @@
     var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
     var MATCH_STRT = /["'`0-9(#/]/;
     var MATCH_END = /[)\]]/;
+    var MATCH_DIV = /[\d\w\/\\`"'\)@$.]/;
 
     var RESERVED = ["for", "while", "let", "var", "if", "const", "break", "continue", "class", "do"];
 
@@ -122,7 +125,7 @@
             });
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
-          } else if (Code[_i] === "/") {
+          } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
             GenerationData.steps.reps += "/";
             _i++;

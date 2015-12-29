@@ -69,6 +69,7 @@
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
     const MATCH_STRT = /["'`0-9(#/]/;
     const MATCH_END  = /[)\]]/;
+    const MATCH_DIV  = /[\d\w\/\\`"'\)@$.]/;
 
     const RESERVED = [`for`, `while`, `let`, `var`, `if`, `const`, `break`, `continue`, `class`, `do`];
 
@@ -111,7 +112,7 @@
             let Comment = COMMENT.find(Start => Code.slice(i, i + Start[0].length) === Start[0]);
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
-          } else if (Code[i] === "/") { // Start custom RegExps
+          } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
             GenerationData.steps.reps += "/";
             i++;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== "/"; i++) {
