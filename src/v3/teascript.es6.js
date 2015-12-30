@@ -96,9 +96,7 @@
             let _prop = PendingProp;
             PendingProp = "";
             if (Code[i] === "?") {
-              GenerationData.steps.reps += _prop;
-              if (MATCH_STRT.test(Code[i + 1]) && Code[i + 1] !== "(") GenerationData.steps.reps += "(";
-              else if (MATCH_PROP.test(Code[i + 1])) GenerationData.steps.reps += ".";
+              GenerationData.steps.reps += _prop + "(";
             } else {
               if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");

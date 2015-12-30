@@ -104,8 +104,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             var _prop = PendingProp;
             PendingProp = "";
             if (Code[_i] === "?") {
-              GenerationData.steps.reps += _prop;
-              if (MATCH_STRT.test(Code[_i + 1]) && Code[_i + 1] !== "(") GenerationData.steps.reps += "(";else if (MATCH_PROP.test(Code[_i + 1])) GenerationData.steps.reps += ".";
+              GenerationData.steps.reps += _prop + "(";
             } else {
               if ((MATCH_STRT.test(Code[_i]) || MATCH_END.test(Code[_i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
