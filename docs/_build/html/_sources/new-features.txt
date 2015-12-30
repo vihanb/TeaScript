@@ -53,16 +53,23 @@ The ``@`` operator is similar to the ``#`` operator, but if you ever have two ne
 .. code-block:: js
 
     (a,b,c,d)=>aT2)+b+d // Before
-    @T2)+b+d            // After
-    
+    @T2)+r+t            // After
   
 ? Operator
 ----------
 
-.. warning::
-  This feature is not implemented and is just speculation of ideas for TeaScript v3.1
+This operator has 2 uses depending on where you use it.
 
-If you're ever in the middle of code and need to close a lot of brackets? Insering a `?` will close all parenthesis at that point:
+.. rubric:: Interrupting Property expansion 
+
+If you ever need to use a JavaScript property name and TeaScript thinks it's a TeaScript property, insert a ``?`` after the property
+
+.. code-block:: js
+
+    x.search(/\A/) // JavaScript
+    x.search?/\A   // TeaScript
+
+.. rubric:: Closing Parenthesis
 
 .. code-block:: js
 

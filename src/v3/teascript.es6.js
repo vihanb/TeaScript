@@ -90,10 +90,6 @@
       for (let i = 0; i < Code.length; i++) {
         if (PendingProp.length > 0) { // Within a property name
           if (MATCH_PROP.test(Code[i])) {
-            // Issue 4 - https://github.com/vihanb/TeaScript/issues/4
-            // VERY TEMPORARY
-            // I'll add a way of detecting
-            // between a JS function and a TeaScript one
             PendingProp += Code[i];
             if (i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
           } else {
@@ -101,6 +97,8 @@
             PendingProp = "";
             if (Code[i] === "?") {
               GenerationData.steps.reps += _prop;
+              if (MATCH_STRT.test(Code[i + 1]) && Code[i + 1] !== "(") GenerationData.steps.reps += "(";
+              else if (MATCH_PROP.test(Code[i + 1])) GenerationData.steps.reps += ".";
             } else {
               if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");

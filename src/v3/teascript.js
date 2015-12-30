@@ -98,10 +98,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (PendingProp.length > 0) {
           // Within a property name
           if (MATCH_PROP.test(Code[_i])) {
-            // Issue 4 - https://github.com/vihanb/TeaScript/issues/4
-            // VERY TEMPORARY
-            // I'll add a way of detecting
-            // between a JS function and a TeaScript one
             PendingProp += Code[_i];
             if (_i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
           } else {
@@ -109,6 +105,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             PendingProp = "";
             if (Code[_i] === "?") {
               GenerationData.steps.reps += _prop;
+              if (MATCH_STRT.test(Code[_i + 1]) && Code[_i + 1] !== "(") GenerationData.steps.reps += "(";else if (MATCH_PROP.test(Code[_i + 1])) GenerationData.steps.reps += ".";
             } else {
               if ((MATCH_STRT.test(Code[_i]) || MATCH_END.test(Code[_i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
