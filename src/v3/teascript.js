@@ -132,7 +132,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
-            console.log("ugh");
             GenerationData.steps.reps += "/";
             _i++;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== "/"; _i++) {
@@ -155,7 +154,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             --_i;
           } else if (Code[_i] === "/" ? !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "") : ESCAPES_START.includes(Code[_i])) {
             // Found an escape character (string)
-            console.log("ugh2");
             EscapeChar = ESCAPES_START.indexOf(Code[_i]);
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
             _i++;

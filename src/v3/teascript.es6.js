@@ -118,7 +118,6 @@
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
-            console.log("ugh");
             GenerationData.steps.reps += "/";
             i++;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== "/"; i++) {
@@ -143,7 +142,6 @@
             --i;
           } else if ( Code[i] === "/" ? !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"") :
                      ESCAPES_START.includes(Code[i])) { // Found an escape character (string)
-            console.log("ugh2");
             EscapeChar = ESCAPES_START.indexOf(Code[i]);
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
             i++;
