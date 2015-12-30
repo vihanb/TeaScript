@@ -101,7 +101,6 @@
             PendingProp = "";
             if (Code[i] === "?") {
               GenerationData.steps.reps += _prop;
-              i++;
             } else {
               if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");

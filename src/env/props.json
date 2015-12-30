@@ -1,177 +1,185 @@
 {
-    "macros": {
-        "Globals": {
-            "$": "Math",
-            "S": "String",
-            "A": "Array",
-            "B": "btoa",
-            "R": "RegExp",
-            "D": "Date",
-            "X": "Request",
-            "L": "shoco"
-        },
-        "Prototype": {
-            "String": {
-                "a": "charCodeAt",
-                "B": "batchReplace",
-                "C": "cycle",
-                "d": "reduce",
-                "e": "every",
-                "E": "insert",
-                "f": "filter",
-                "F": "iff",
-                "G": "get",
-                "g": "g_replace",
-                "h": "head",
-                "i": "indexOf",
-                "I": "includes",
-                "K": "chunk",
-                "l": "loop",
-                "m": "match",
-                "M": "some",
-                "n": "length",
-                "N": "alphanum",
-                "O": "onlyChars",
-                "p": "sort",
-                "P": "mergecaps",
-                "r": "reverse",
-                "R": "repeat",
-                "s": "split",
-                "S": "slice",
-                "T": "valueOf",
-                "U": "unique",
-                "W": "w_replace",
-                "Y": "isDigit",
-                "z": "isLower",
-                "Z": "isUpper"
-            },
-            "Array": {
-                "C": "cycle",
-                "d": "dupe",
-                "e": "every",
-                "f": "fill",
-                "F": "filter",
-                "g": "iff",
-                "G": "get",
-                "i": "indexOf",
-                "I": "includes",
-                "j": "n_join",
-                "k": "keys",
-                "K": "chunk",
-                "L": "loc",
-                "m": "map",
-                "N": "min",
-                "p": "push",
-                "P": "pop",
-                "r": "reverse",
-                "R": "reduce",
-                "S": "slice",
-                "s": "newsort",
-                "t": "transpose",
-                "u": "unique",
-                "X": "max"
-            },
-            "RegExp": {
-                "t": "test"
-            },
-            "Number": {
-                "T": "toString"
-            },
-            "Boolean": {
-                "T": "toString"
-            }
-        },
-        "Subglobals": {
-            "Math": {
-                "C": "sign",
-                "c": "ceil",
-                "p": "pow",
-                "P": "prime",
-                "h": "hypot",
-                "s": "sqrt",
-                "a": "abs",
-                "F": "Fib",
-                "f": "factorial"
-            },
-            "String": {
-                "c": "fromCharCode",
-                "w": "raw"
-            },
-            "Array": {
-                "r": "range",
-                "f": "from"
-            }
-        },
-        "Other": {
-            "C": "String.fromCharCode",
-            "F": "Math.Fib",
-            "a": "Math.abs",
-            "r": "Array.range",
-            "M": "Math.r",
-            "N": "Math.rand",
-            "P": "parseInt",
-            "U": "Math.round"
-        }
+  "macros": {
+    "Globals": {
+      "$": "Math",
+      "S": "String",
+      "A": "Array",
+      "B": "btoa",
+      "R": "RegExp",
+      "D": "Date",
+      "X": "Request",
+      "L": "shoco"
     },
-    "getters": {
-        "String": {
-            "prototype": {
-                "c": "charCodeAt",
-                "v": "reverse",
-                "L": "toLowerCase",
-                "u": "toUpperCase",
-                "z": "isLower",
-                "Z": "isUpper"
-            }
-        },
-        "Array": {
-            "prototype": {
-                "x": "sum",
-                "d": "dupe"
-            }
-        },
-        "Math": {
-            "r": "random"
-        }
+    "Prototype": {
+      "String": {
+        "a": "charCodeAt",
+        "B": "batchReplace",
+        "C": "cycle",
+        "d": "reduce",
+        "e": "every",
+        "E": "insert",
+        "f": "filter",
+        "F": "iff",
+        "G": "get",
+        "g": "g_replace",
+        "h": "head",
+        "i": "indexOf",
+        "I": "includes",
+        "K": "chunk",
+        "l": "loop",
+        "m": "match",
+        "M": "some",
+        "n": "length",
+        "N": "alphanum",
+        "O": "onlyChars",
+        "p": "sort",
+        "P": "mergecaps",
+        "r": "reverse",
+        "R": "repeat",
+        "s": "split",
+        "S": "slice",
+        "T": "valueOf",
+        "U": "unique",
+        "W": "w_replace",
+        "Y": "isDigit",
+        "z": "isLower",
+        "Z": "isUpper"
+      },
+      "Array": {
+        "C": "cycle",
+        "d": "dupe",
+        "e": "every",
+        "f": "fill",
+        "F": "filter",
+        "g": "iff",
+        "G": "get",
+        "i": "indexOf",
+        "I": "includes",
+        "j": "n_join",
+        "k": "keys",
+        "K": "chunk",
+        "L": "loc",
+        "m": "map",
+        "N": "min",
+        "p": "push",
+        "P": "pop",
+        "r": "reverse",
+        "R": "reduce",
+        "S": "slice",
+        "s": "newsort",
+        "t": "transpose",
+        "u": "unique",
+        "X": "max"
+      },
+      "RegExp": {
+        "t": "test"
+      },
+      "Number": {
+        "T": "toString",
+        "p": "pow"
+      },
+      "Boolean": {
+        "T": "toString"
+      }
     },
-    "rep": {
-        "¯": "X()",
-        "°": "N()",
-        "¥": "$P(",
-        "®": "P(",
-        "²": "C(",
-        "¿": "s``.m(#",
-        "·": "s``",
-        "£": "xl(#",
-        "µ": "j``",
-        "¢": "``",
-        "§": "`\n`",
-        "ß": "m(#",
-        "±": ")))",
-        "¡": "()",
-        "©": "))",
-        "»": "(#",
-        "¶": "||",
-        "Þ": "&&",
-        "ø": "` `",
-        "¦": "==",
-        "×": "(x)",
-        "Ø": "--",
-        "Æ": "++",
-        "÷": "T(2)",
-        "æ": "Ld`",
-        "«": "<=",
-        "¤": ",2",
-        "È": "F(",
-        "¬": "+1",
-        "Ð": "xs`",
-        "Ñ": "[0]",
-        "Ò": "[1]"
+    "Subglobals": {
+      "Math": {
+        "C": "sign",
+        "c": "ceil",
+        "p": "pow",
+        "P": "prime",
+        "h": "hypot",
+        "s": "sqrt",
+        "a": "abs",
+        "F": "Fib",
+        "f": "factorial"
+      },
+      "String": {
+        "c": "fromCharCode",
+        "w": "raw"
+      },
+      "Array": {
+        "r": "range",
+        "f": "from"
+      }
     },
-    "def": {
-        "Globals": "window[$1]",
-        "Prototype": "window[$1].prototype",
-        "Subglobals": "window[$1]",
-        "Other": "eval($1)"
+    "Other": {
+      "C": "String.fromCharCode",
+      "F": "Math.Fib",
+      "a": "Math.abs",
+      "r": "Array.range",
+      "M": "Math.r",
+      "N": "Math.rand",
+      "P": "parseInt",
+      "U": "Math.round"
     }
+  },
+  "getters": {
+    "String": {
+      "prototype": {
+        "c": "charCodeAt",
+        "v": "reverse",
+        "L": "toLowerCase",
+        "u": "toUpperCase",
+        "z": "isLower",
+        "Z": "isUpper"
+      }
+    },
+    "Array": {
+      "prototype": {
+        "x": "sum",
+        "d": "dupe"
+      }
+    },
+    "Number": {
+      "prototype": {
+        "c": "cbrt",
+        "s": "sqrt",
+        "n": "sign"
+      }
+    },
+    "Math": {
+      "r": "random"
+    }
+  },
+  "rep": {
+    "¯": "X()",
+    "°": "N()",
+    "¥": "$P(",
+    "®": "P(",
+    "²": "C(",
+    "¿": "s``.m(#",
+    "·": "s``",
+    "£": "xl(#",
+    "µ": "j``",
+    "¢": "``",
+    "§": "`\n`",
+    "ß": "m(#",
+    "±": ")))",
+    "¡": "()",
+    "©": "))",
+    "»": "(#",
+    "¶": "||",
+    "Þ": "&&",
+    "ø": "` `",
+    "¦": "==",
+    "×": "(x)",
+    "Ø": "--",
+    "Æ": "++",
+    "÷": "T(2)",
+    "æ": "Ld`",
+    "«": "<=",
+    "¤": ",2",
+    "È": "F(",
+    "¬": "+1",
+    "Ð": "xs`",
+    "Ñ": "[0]",
+    "Ò": "[1]"
+  },
+  "def": {
+    "Globals": "window[$1]",
+    "Prototype": "window[$1].prototype",
+    "Subglobals": "window[$1]",
+    "Other": "eval($1)"
+  }
 }

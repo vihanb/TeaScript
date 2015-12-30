@@ -5,6 +5,7 @@
 
 /**
  * == PROTOTYPE ==
+ * Number
  * Array
  * String
  * Math
@@ -18,6 +19,43 @@
 **/
 
 // ==== PROTOTYPE ==== //
+
+/**
+ * == Number ==
+ * pow
+ * sqrt
+ * cbrt
+ * ceil
+ * round
+**/
+
+Number.prototype.pow = function (n) {
+  return Math.pow(this, n || 2);
+};
+
+Number.prototype.sqrt = function () {
+  return Math.sqrt(this);
+};
+
+Number.prototype.cbrt = function () {
+  return Math.cbrt(this);
+};
+
+Number.prototype.ceil = function () {
+  return Math.ceil(this);
+};
+
+Number.prototype.round = function () {
+  return Math.round(this);
+};
+
+Number.prototype.toString =  (function(toStr) { return function(n) {
+  return toStr.call(this, n || 2)
+} }(Number.prototype.toString));
+
+Number.prototype.sign = function () {
+  return this.sign();
+};
 
 /**
  * == Array ==
@@ -277,8 +315,8 @@ String.prototype.isDigit = function isDigit() {
 String.prototype.alphanum = function alphanum (a) {
   return !((a+"")||"").includes(0) && /[0-9]/.test(this) ? "0123456789"
   : !((a+"")||"").includes(1) && /[A-Za-z]/.test(this) ? /[A-Z]/.test(this) ?
-                             "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
-                             "abcdefghijklmnopqrstuvwxyz"
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
+  "abcdefghijklmnopqrstuvwxyz"
   : this
 };
 
