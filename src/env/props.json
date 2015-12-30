@@ -1,7 +1,7 @@
 {
   "macros": {
     "Globals": {
-      "$": "Math",
+      "M": "Math",
       "S": "String",
       "A": "Array",
       "B": "btoa",

@@ -35,12 +35,12 @@ Numbers are also, just *numbers*:
 
 .. code-block:: js
 
-    1234 // Decimal
-    12.3 // Decimal
-    12e3 // Scientific Notation
-    0x1F // Hexadecimal
-    0b10 // Binary
-    0o18 // Octal
+    12345 // Decimal
+    12.34 // Decimal
+    1e23) // Scientific Notation
+    0xFA) // Hexadecimal
+    0b10) // Binary
+    0o18) // Octal
 
 RegExp
 -------

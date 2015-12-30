@@ -38,32 +38,23 @@ Operators
 # Operator
 ----------
 
-The ``#`` operator is one that is *very* useful. It's a shorthand for function declerations that you can use where ever.
+The ``#`` operator is one that is *very* useful. It's a shorthand for function declerations that you can use where ever. ``#`` expands to ``(l,i,a,b)=>``
 
 .. code-block:: js
 
     (a,b,c,d)=>a+b+c+d // Before
     #l+i+a+b           // After
 
-^ Operator
+@ Operator
 ----------
 
-.. warning::
-  This feature is experimental and will only work on some enviorments
-  
-  This operator may also be replaced with the ``@`` character to avoid the requirment of needing to overload
-
-XOR? Nope, that's the new `exponentiation` operator. What does it do? It functions as a repeat *and* as a `exponentiation` function.
+The ``@`` operator is similar to the ``#`` operator, but if you ever have two nested lambdas, you can use this. ``@`` expands to ``(q,r,s,t)=>q.``
 
 .. code-block:: js
 
-    < "foo"^3
-    > "foofoofoo"
+    (a,b,c,d)=>aT2)+b+d // Before
+    @T2)+b+d            // After
     
-    < 3^2
-    > 9
-    
-Want XOR back? That's just ``\^``.
   
 ? Operator
 ----------
