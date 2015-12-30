@@ -99,13 +99,18 @@
           } else {
             let _prop = PendingProp;
             PendingProp = "";
-            if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
-              GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-              if (Code[i] !== "(" && Code[i] !== ")") GenerationData.steps.reps += "(";
-            } else {
+            if (Code[i] === "?") {
               GenerationData.steps.reps += _prop;
+              i++;
+            } else {
+              if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
+                GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
+                if (Code[i] !== "(" && Code[i] !== ")") GenerationData.steps.reps += "(";
+              } else {
+                GenerationData.steps.reps += _prop;
+              }
+              i--;
             }
-            i--;
           }
         } else {
           if (COMMENT.some(Start => Code.slice(i, i + Start[0].length) === Start[0])) { // Comment
@@ -113,6 +118,7 @@
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
+            console.log("ugh");
             GenerationData.steps.reps += "/";
             i++;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== "/"; i++) {
@@ -135,7 +141,9 @@
               i += Code.slice(i).match(REGEX_FLAG)[0].length;
             }
             --i;
-          } else if (ESCAPES_START.includes(Code[i])) { // Found an escape character (string)
+          } else if ( Code[i] === "/" ? !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"") :
+                     ESCAPES_START.includes(Code[i])) { // Found an escape character (string)
+            console.log("ugh2");
             EscapeChar = ESCAPES_START.indexOf(Code[i]);
             if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[i];
             i++;
@@ -179,7 +187,8 @@
       let NestOrder = [];
       let EscapeChar = -1;
       for (let i = 0; i < Code_1.length; i++) {
-        if (ESCAPES_START.includes(Code_1[i])) { // Found an escape character (string)
+        if (Code_1[i] === "/" ? !MATCH_DIV.test([...Code_1.slice(0,i)].reverse().join("").trim()||"") :
+            ESCAPES_START.includes(Code_1[i])) { // Found an escape character (string)
           EscapeChar = ESCAPES_START.indexOf(Code_1[i]);
           if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.parenfix += Code_1[i];
           i++;

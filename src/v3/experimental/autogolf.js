@@ -7,6 +7,7 @@ TeaScript.Golf = function (Code, Un, Data) {
     // Un-Auto-Golf
 
   } else {
-      // Auto Golf
-    }
+    // Auto Golf
+    
+  }
 };
