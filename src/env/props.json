@@ -14,6 +14,7 @@
       "String": {
         "a": "charCodeAt",
         "B": "batchReplace",
+        "c": "search",
         "C": "cycle",
         "d": "reduce",
         "e": "every",
