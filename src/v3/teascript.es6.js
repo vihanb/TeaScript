@@ -159,9 +159,8 @@
           } else if (MATCH_NUM.test(Code[i])) { // Number
             for (let j = i; (i - j) < MAX_LITERAL && /[\d.]/.test(Code[i]); i++) GenerationData.steps.reps += Code[i];
             GenerationData.steps.reps += " "; --i;
-          } else if (Code[i].charCodeAt() > 0xA0/* && Code[i].charCodeAt() <= 0xFF*/) { // Unicode char
+          } else if (Data.rep.hasOwnProperty(Code[i])) { // Unicode char
             GenerationData.steps.reps += Data.rep[Code[i]];
-            i -= Data.rep[Code[i]].length;
           } else { // Other
             GenerationData.steps.reps += Code[i]
           }

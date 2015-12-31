@@ -26,7 +26,7 @@ This can be used to assign functions both recursive and not. To learn more about
 Assignment Operator
 -------------------
 
-You an also just use the assignment operator to assign variables
+You an also just use the assignment operator to assign variables. Some one-letter variables are already preassigned so you may be able to skip the definition
 
 .. code-block:: js
 

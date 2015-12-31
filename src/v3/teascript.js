@@ -175,11 +175,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             for (var j = _i; _i - j < MAX_LITERAL && /[\d.]/.test(Code[_i]); _i++) {
               GenerationData.steps.reps += Code[_i];
             }GenerationData.steps.reps += " ";--_i;
-          } else if (Code[_i].charCodeAt() > 0xA0 /* && Code[i].charCodeAt() <= 0xFF*/) {
-              // Unicode char
-              GenerationData.steps.reps += Data.rep[Code[_i]];
-              _i -= Data.rep[Code[_i]].length;
-            } else {
+          } else if (Data.rep.hasOwnProperty(Code[_i])) {
+            // Unicode char
+            GenerationData.steps.reps += Data.rep[Code[_i]];
+          } else {
             // Other
             GenerationData.steps.reps += Code[_i];
           }
