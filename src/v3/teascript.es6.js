@@ -64,7 +64,7 @@
     const MATCH_NUM  = /\d/;
     const MATCH_LTRL = /["'`0-9]/; // Literal
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    const MATCH_STRT = /["'0-9(#/]/;
+    const MATCH_STRT = /["'`0-9(#/]/;
     const MATCH_END  = /[)\]]/;
     const MATCH_DIV  = /[\d\w\/\\`"'\)@$.]/;
 
@@ -97,7 +97,7 @@
             } else {
               if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-                if (Code[i] !== "(" && Code[i] !== ")") GenerationData.steps.reps += "(";
+                if (Code[i] !== "(" && Code[i] !== ")" && Code[i] !== "`") GenerationData.steps.reps += "(";
               } else {
                 GenerationData.steps.reps += _prop;
               }

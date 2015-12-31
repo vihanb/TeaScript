@@ -75,7 +75,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var MATCH_NUM = /\d/;
     var MATCH_LTRL = /["'`0-9]/; // Literal
     var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    var MATCH_STRT = /["'0-9(#/]/;
+    var MATCH_STRT = /["'`0-9(#/]/;
     var MATCH_END = /[)\]]/;
     var MATCH_DIV = /[\d\w\/\\`"'\)@$.]/;
 
@@ -105,7 +105,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             } else {
               if ((MATCH_STRT.test(Code[_i]) || MATCH_END.test(Code[_i])) && !RESERVED.includes(_prop)) {
                 GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-                if (Code[_i] !== "(" && Code[_i] !== ")") GenerationData.steps.reps += "(";
+                if (Code[_i] !== "(" && Code[_i] !== ")" && Code[_i] !== "`") GenerationData.steps.reps += "(";
               } else {
                 GenerationData.steps.reps += _prop;
               }
