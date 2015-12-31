@@ -36,6 +36,8 @@ You an also just use the assignment operator to assign variables
 Predefined variables
 ====================
 
+The predefined variables can be overwritten freely.
+
 ========= =====
 Variables Value
 ========= =====

@@ -28,11 +28,15 @@ Assignment Operator
 
 You an also just use the assignment operator to assign variables
 
+.. code-block:: js
+
     var i=0;  // Before
     i=0;      // After
 
 Predefined variables
 ====================
+
+The predefined variables can be overwritten freely.
 
 ========= =====
 Variables Value
