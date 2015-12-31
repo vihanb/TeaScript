@@ -23,10 +23,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     // - Property Expansion
     // - Operator Overloading
     // - Fix parenthesis
-    // -- Todo
     // - Decompress strings
-    // - Transpile
-    // - eval
     ///
 
     var GenerationData = {
@@ -78,7 +75,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var MATCH_NUM = /\d/;
     var MATCH_LTRL = /["'`0-9]/; // Literal
     var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    var MATCH_STRT = /["'`0-9(#/]/;
+    var MATCH_STRT = /["'0-9(#/]/;
     var MATCH_END = /[)\]]/;
     var MATCH_DIV = /[\d\w\/\\`"'\)@$.]/;
 

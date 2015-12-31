@@ -54,6 +54,30 @@ The ``@`` operator is similar to the ``#`` operator, but if you ever have two ne
 
     (a,b,c,d)=>aT2)+b+d // Before
     @T2)+r+t            // After
+
+.. _f-operator:
+
+ƒ Operator
+----------
+
+``ƒ`` expands to ``f=(l,i,a,b)=>``, this can be used to create recursive functions easily without having to manually add a decleration
+
+.. code-block:: js
+
+    f=(a,b)=>a<1?b:f(a--,b++); // Before
+    ƒl<1?i:f(l--,i++);         // After
+
+Σ Operator
+----------
+
+The ``Σ`` operator can be used to loop through arrays and strings, it expands to ``.l((l,i,a,b)=>``.
+
+.. code-block:: js
+
+    xΣlc // Maps char codes
+    xΣi  // Generates range
+
+
   
 ? Operator
 ----------

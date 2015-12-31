@@ -1,0 +1,56 @@
+Variables
+*********
+
+TeaScript has many variables which are pre-initalized to various values but you can also use them for custom variables:
+
+Assignment
+==========
+
+To assign a variable you can easier use a shorthand or the native JavaScript ways.
+
+Shorthands
+----------
+
+.. rubric:: Using ƒ
+
+This can be used to assign functions both recursive and not. To learn more about this operator, see :ref:`f-operator`.
+
+.. code-block:: js
+
+    f=(l,i)=>l<1?i:f(l--,i++) // Before
+    ƒl<1?i:l--:i++            // After
+    
+    f=l=>{for(i=0;i<l;i*=i)} // Before
+    ƒ{for(i=0;i<l;i*=i       // After
+
+Assignment Operator
+-------------------
+
+You an also just use the assignment operator to assign variables
+
+.. code-block:: js
+
+    var i=0;  // Before
+    i=0;      // After
+
+Predefined variables
+====================
+
+========= =====
+Variables Value
+========= =====
+p         ``" "``
+u         ``""``
+n         ``"\n"``
+dfjkv     ``0``
+o         ``1``
+g         ``2``
+e         ``10``
+h         ``100``
+m         ``16``
+f         ``false``
+½         ``1/2``
+¼         ``1/4``
+π         ``3.14159265358979323846``
+Φ         ``1.61803398874989484820``
+========= =====

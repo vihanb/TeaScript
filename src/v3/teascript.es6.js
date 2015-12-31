@@ -18,10 +18,7 @@
     // - Property Expansion
     // - Operator Overloading
     // - Fix parenthesis
-    // -- Todo
     // - Decompress strings
-    // - Transpile
-    // - eval
     ///
 
     const GenerationData = {
@@ -67,7 +64,7 @@
     const MATCH_NUM  = /\d/;
     const MATCH_LTRL = /["'`0-9]/; // Literal
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    const MATCH_STRT = /["'`0-9(#/]/;
+    const MATCH_STRT = /["'0-9(#/]/;
     const MATCH_END  = /[)\]]/;
     const MATCH_DIV  = /[\d\w\/\\`"'\)@$.]/;
 
