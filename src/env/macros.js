@@ -57,10 +57,6 @@ Number.prototype.sign = function () {
   return this.sign();
 };
 
-Number.prototype.parseString = function(n) {
-  return parseInt(this, n || 2);
-};
-
 /**
  * == Array ==
  * range
@@ -193,6 +189,7 @@ Object.defineProperty(Array.prototype, 'n', LENGTH = { get: function () {
  * fix
  * filter
  * head
+ * toInt
  * w_replace
  * sort
  * every
@@ -243,6 +240,10 @@ String.prototype.iff = function iff (c, a) {
     return this;
   }
 }
+
+String.prototype.toInt = function toInt (n) {
+  return parseInt(this, n || 2);
+};
 
 String.prototype.chunk = function chunk (size) {
   return this.match(RegExp(".{1,"+size+"}",'g'));
