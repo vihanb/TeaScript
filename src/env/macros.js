@@ -232,7 +232,7 @@ String.prototype.filter = function filter (func, delimiter, ret) {
   }).join(ret || '');
 };
 
-String.prototype.fix = function fix (s, n) {
+String.prototype.fix = function fix (n,s) {
   return ((s || "0").repeat(n) + this).slice(-n);
 }
 
