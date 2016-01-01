@@ -40,6 +40,7 @@
         "s": "split",
         "S": "slice",
         "T": "valueOf",
+        "t": "toInt",
         "U": "unique",
         "W": "w_replace",
         "x": "fix",
@@ -79,7 +80,6 @@
       "Number": {
         "T": "toString",
         "p": "pow",
-        "F": "fromString"
       },
       "Boolean": {
         "T": "toString"
