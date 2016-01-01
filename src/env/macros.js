@@ -57,6 +57,10 @@ Number.prototype.sign = function () {
   return this.sign();
 };
 
+Number.prototype.parseString = function(n) {
+  return parseInt(this, n || 2);
+};
+
 /**
  * == Array ==
  * range
@@ -186,6 +190,7 @@ Object.defineProperty(Array.prototype, 'n', LENGTH = { get: function () {
  * unique
  * onlyChars
  * chunk
+ * fix
  * filter
  * head
  * w_replace
@@ -226,6 +231,10 @@ String.prototype.filter = function filter (func, delimiter, ret) {
     return func.call(this, l,i,self, b);
   }).join(ret || '');
 };
+
+String.prototype.fix = function fix (s, n) {
+  return ((s || "0").repeat(n) + this).slice(-n);
+}
 
 String.prototype.iff = function iff (c, a) {
   if (c) {
