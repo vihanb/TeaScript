@@ -92,7 +92,7 @@
           } else {
             let _prop = PendingProp;
             PendingProp = "";
-            if (Code[i] === "?") {
+            if (Code[i] === "\\") {
               GenerationData.steps.reps += _prop + "(";
             } else {
               if ((MATCH_STRT.test(Code[i]) || MATCH_END.test(Code[i])) && !RESERVED.includes(_prop)) {
