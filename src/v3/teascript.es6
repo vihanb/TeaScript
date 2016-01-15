@@ -34,13 +34,13 @@
 
     // CONSTANTS
     const MAX_LITERAL = 65536; // 2^16
+    const BACKSLASH = "\\";
 
     const ESCAPES = [
-      [`"`,`"`,`\\`],
-      [`'`,`'`,`\\`],
-      [`/`,`/`,`\\`],
-      ["`","`",`\\`],
-      //[`$`,`$`,`\\`, 1]
+      [`"`,`"`,BACKSLASH],
+      [`'`,`'`,BACKSLASH],
+      [`/`,`/`,BACKSLASH],
+      ["`","`",BACKSLASH],
     ];
     const ESCAPES_START = ESCAPES.map(Escape => Escape[0]);
     const ESCAPES_END   = ESCAPES.map(Escape => Escape[1]);
@@ -74,8 +74,16 @@
     const REGEX_CLASS = new Map([
       ["A", "[A-Z]"],
       ["a", "[a-z]"],
+      ["B": "[^A-Z]"],
+      ["b": "[^a-z]"],
       ["L", "[A-Za-z]"],
-      ["N", "[A-Za-z0-9]"]
+      ["l", "[^A-Za-z]"]
+      ["N", "[A-Za-z0-9]"],
+      ["n", "[^A-Za-z0-9]"]
+      ["v", "[aeiou]"],
+      ["V", "[AEIOU]"],
+      ["w", "[^aeiou]"],
+      ["W", "[^AEIOU]"],
     ]);
 
     /*=== START CODE ===*/
