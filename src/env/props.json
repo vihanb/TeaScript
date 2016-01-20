@@ -124,6 +124,7 @@
         "v": "reverse",
         "L": "toLowerCase",
         "u": "toUpperCase",
+        "q": "SpaceSplit",
         "z": "isLower",
         "Z": "isUpper"
       }
@@ -131,7 +132,8 @@
     "Array": {
       "prototype": {
         "x": "sum",
-        "d": "dupe"
+        "d": "dupe",
+        "t": "transpose"
       }
     },
     "Number": {
@@ -160,7 +162,7 @@
     "·": "&&",
     "┼": "++",
     "─": "--",
-    
+
     "ƒ": "f=(l,i,a,b)=>",
     "≡": "===",
     "¿": " ?",

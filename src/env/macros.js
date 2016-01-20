@@ -114,7 +114,7 @@ Array.prototype.containsAll = function containsAll (arg) {
 };
 
 Array.prototype.transpose = function () {
-  var str = typeof this[0][0] === "string",
+  var str = typeof this[0] === "string",
       self = str ? this.map(function (str) {
         return str.split('');
       }) : this;
@@ -252,6 +252,10 @@ String.prototype.chunk = function chunk (size) {
 String.prototype.onlyChars = function onlyChars (reg, old, flags) {
   return !old ? RegExp('^['+( typeof reg === "array" ? reg[0][0] : reg )+']+$', flags || '').test(this) : (this.match(new RegExp('['+reg+']', 'gi'))||[]).join('');
 };
+
+String.prototype.SpaceSplit = function SpaceSplit() {
+  return this.split(/\s+/g);
+}
 
 String.prototype.mergecaps = function (newcap) {
   return this.split("").reduce(function (pending, item, index) {

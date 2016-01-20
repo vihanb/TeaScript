@@ -80,7 +80,20 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var RESERVED = ["for", "while", "let", "var", "if", "const", "break", "continue", "class", "do"];
 
     var REGEX_FLAG = /[gmi]+/;
-    var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["B", "[^A-Z]"], ["b", "[^a-z]"], ["L", "[A-Za-z]"], ["l", "[^A-Za-z]"][("N", "[A-Za-z0-9]")], ["n", "[^A-Za-z0-9]"][("v", "[aeiou]")], ["V", "[AEIOU]"], ["w", "[^aeiou]"], ["W", "[^AEIOU]"]]);
+    var REGEX_CLASS = new Map([
+      ["A", "[A-Z]"],
+      ["a", "[a-z]"],
+      ["B", "[^A-Z]"],
+      ["b", "[^a-z]"],
+      ["L", "[A-Za-z]"],
+      ["l", "[^A-Za-z]"],
+      ["N", "[A-Za-z0-9]"),
+      ["n", "[^A-Za-z0-9]"],
+      ["v", "[aeiou]"],
+      ["V", "[AEIOU]"],
+      ["w", "[^aeiou]"],
+      ["W", "[^AEIOU]"]
+    ]);
 
     /*=== START CODE ===*/
 
