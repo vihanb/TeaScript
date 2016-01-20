@@ -34,13 +34,13 @@
 
     // CONSTANTS
     const MAX_LITERAL = 65536; // 2^16
+    const BACKSLASH = ""\\";
 
     const ESCAPES = [
-      [`"`,`"`,`\\`],
-      [`'`,`'`,`\\`],
-      [`/`,`/`,`\\`],
-      ["`","`",`\\`],
-      //[`$`,`$`,`\\`, 1]
+      [`"`,`"`,BACKSLASH],
+      [`'`,`'`,BACKSLASH],
+      [`/`,`/`,BACKSLASH],
+      ["`","`",BACKSLASH],
     ];
     const ESCAPES_START = ESCAPES.map(Escape => Escape[0]);
     const ESCAPES_END   = ESCAPES.map(Escape => Escape[1]);
@@ -64,7 +64,7 @@
     const MATCH_NUM  = /\d/;
     const MATCH_LTRL = /["'`0-9]/; // Literal
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    const MATCH_STRT = /["'`0-9(#@/]/;
+    const MATCH_STRT = /["'`0-9(#@/ßα]/;
     const MATCH_END  = /[)\]]/;
     const MATCH_DIV  = /[\d\w\/\\`"'\)@$.]/;
 
