@@ -34,13 +34,12 @@
 
     // CONSTANTS
     const MAX_LITERAL = 65536; // 2^16
-    const BACKSLASH = ""\\";
 
     const ESCAPES = [
-      [`"`,`"`,BACKSLASH],
-      [`'`,`'`,BACKSLASH],
-      [`/`,`/`,BACKSLASH],
-      ["`","`",BACKSLASH],
+      [`"`,`"`,`\\`],
+      [`'`,`'`,`\\`],
+      [`/`,`/`,`\\`],
+      ["`","`",`\\`],
     ];
     const ESCAPES_START = ESCAPES.map(Escape => Escape[0]);
     const ESCAPES_END   = ESCAPES.map(Escape => Escape[1]);

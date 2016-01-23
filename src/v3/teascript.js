@@ -45,8 +45,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var MAX_LITERAL = 65536; // 2^16
 
     var ESCAPES = [["\"", "\"", "\\"], ["'", "'", "\\"], ["/", "/", "\\"], ["`", "`", "\\"]];
-
-    //[`$`,`$`,`\\`, 1]
     var ESCAPES_START = ESCAPES.map(function (Escape) {
       return Escape[0];
     });
@@ -75,7 +73,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var MATCH_NUM = /\d/;
     var MATCH_LTRL = /["'`0-9]/; // Literal
     var MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    var MATCH_STRT = /["'`0-9(#@/]/;
+    var MATCH_STRT = /["'`0-9(#@/ßα]/;
     var MATCH_END = /[)\]]/;
     var MATCH_DIV = /[\d\w\/\\`"'\)@$.]/;
 
