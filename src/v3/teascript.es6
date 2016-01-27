@@ -1,7 +1,7 @@
 ////
 //
 // TeaScript 3 - Compiler
-// (c) Vihan B 2015
+// (c) Vihan 2015
 //
 ////
 
@@ -63,7 +63,7 @@
     const MATCH_NUM  = /\d/;
     const MATCH_LTRL = /["'`0-9]/; // Literal
     const MATCH_LEND = /["'`0-9)/\]]/; // Match any end
-    const MATCH_STRT = /["'`0-9(#@/ßα]/;
+    const MATCH_STRT = /["'`0-9(#@/ßα+=*/]/;
     const MATCH_END  = /[)\]]/;
     const MATCH_DIV  = /[\d\w\/\\`"'\)@$.]/;
 
