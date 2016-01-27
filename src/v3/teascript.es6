@@ -78,13 +78,34 @@
     ]);
 
     /*=== START CODE ===*/
-
+    let DEFINITIONS = new Map();
+    
     // Unicode Shortcuts & Prop Expansion
     {
       let EscapeChar = -1;
       let PendingProp = "";
+      let Definition = 0; // 1, Key, 2, Value
+      let DefinitionItem = ["", ""];
       for (let i = 0; i < Code.length; i++) {
-        if (PendingProp.length > 0) { // Within a property name
+        if (Definition) {
+          if (Code[i] === "\\") {
+            // End escape sequence
+            DEFINITIONS.set(...DefinitionItem);
+            GenerationData.steps.reps += DefinitionItem[1];
+            Definition = 0;
+            DefinitionItem = ["", ""];
+          } else {
+            if (Code[i] === "=") {
+              Definition = 2;
+            } else if (Definition === 1) {
+              DefinitionItem[0] += Code[i];
+            } else if (Definition === 2) {
+              DefinitionItem[1] += Code[i];
+            }
+          }
+        } else if (Code[i] === "\\") {
+          Definition = 1;
+        } else if (PendingProp.length > 0) { // Within a property name
           if (MATCH_PROP.test(Code[i])) {
             PendingProp += Code[i];
             if (i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
@@ -108,6 +129,10 @@
             let Comment = COMMENT.find(Start => Code.slice(i, i + Start[0].length) === Start[0]);
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
+          } else if ([...DEFINITIONS.keys()].some(DEF => Code[i].indexOf(DEF) === 0)) {
+            let DEFV = [...DEFINITIONS.keys()].filter(DEF => Code[i].indexOf(DEF) === 0).sort((a,b) => b.length - a.length)[0];
+            GenerationData.steps.reps += DEFINITIONS.get(DEFV);
+            i += DEFV.length - 1;
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
             GenerationData.steps.reps += "/";
             i++;
@@ -203,7 +228,7 @@
       NestOrder.reverse().forEach(Key => GenerationData.steps.parenfix += CLOSE_END[CLOSE_START.indexOf(Key)]);
     }
 
-    return GenerationData;
+    return [GenerationData, DEFINITIONS];
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;

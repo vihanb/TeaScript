@@ -83,14 +83,35 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["L", "[A-Za-z]"], ["N", "[A-Za-z0-9]"]]);
 
     /*=== START CODE ===*/
+    var DEFINITIONS = new Map();
 
     // Unicode Shortcuts & Prop Expansion
     {
       var EscapeChar = -1;
       var PendingProp = "";
+      var Definition = 0; // 1, Key, 2, Value
+      var DefinitionItem = ["", ""];
 
       var _loop = function (_i) {
-        if (PendingProp.length > 0) {
+        if (Definition) {
+          if (Code[_i] === "\\") {
+            // End escape sequence
+            DEFINITIONS.set.apply(DEFINITIONS, _toConsumableArray(DefinitionItem));
+            GenerationData.steps.reps += DefinitionItem[1];
+            Definition = 0;
+            DefinitionItem = ["", ""];
+          } else {
+            if (Code[_i] === "=") {
+              Definition = 2;
+            } else if (Definition === 1) {
+              DefinitionItem[0] += Code[_i];
+            } else if (Definition === 2) {
+              DefinitionItem[1] += Code[_i];
+            }
+          }
+        } else if (Code[_i] === "\\") {
+          Definition = 1;
+        } else if (PendingProp.length > 0) {
           // Within a property name
           if (MATCH_PROP.test(Code[_i])) {
             PendingProp += Code[_i];
@@ -120,6 +141,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             });
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
+          } else if ([].concat(_toConsumableArray(DEFINITIONS.keys())).some(function (DEF) {
+            return Code[_i].indexOf(DEF) === 0;
+          })) {
+            var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
+              return Code[_i].indexOf(DEF) === 0;
+            }).sort(function (a, b) {
+              return b.length - a.length;
+            })[0];
+            GenerationData.steps.reps += DEFINITIONS.get(DEFV);
+            _i += DEFV.length - 1;
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
             GenerationData.steps.reps += "/";
@@ -229,7 +260,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       });
     }
 
-    return GenerationData;
+    return [GenerationData, DEFINITIONS];
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;else global.TeaScript = TeaScript;
