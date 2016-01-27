@@ -111,6 +111,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           }
         } else if (Code[_i] === "\\") {
           Definition = 1;
+        } else if ([].concat(_toConsumableArray(DEFINITIONS.keys())).some(function (DEF) {
+          return Code.slice(_i).indexOf(DEF) === 0;
+        })) {
+          var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
+            return Code.slice(_i).indexOf(DEF) === 0;
+          }).sort(function (a, b) {
+            return b.length - a.length;
+          })[0];
+          GenerationData.steps.reps += DEFINITIONS.get(DEFV);
+          _i += DEFV.length - 1;
         } else if (PendingProp.length > 0) {
           // Within a property name
           if (MATCH_PROP.test(Code[_i])) {
@@ -141,16 +151,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             });
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
-          } else if ([].concat(_toConsumableArray(DEFINITIONS.keys())).some(function (DEF) {
-            return Code.indexOf(DEF) === 0;
-          })) {
-            var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
-              return Code.indexOf(DEF) === 0;
-            }).sort(function (a, b) {
-              return b.length - a.length;
-            })[0];
-            GenerationData.steps.reps += DEFINITIONS.get(DEFV);
-            _i += DEFV.length - 1;
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
             GenerationData.steps.reps += "/";
