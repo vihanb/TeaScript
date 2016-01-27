@@ -129,8 +129,8 @@
             let Comment = COMMENT.find(Start => Code.slice(i, i + Start[0].length) === Start[0]);
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
-          } else if ([...DEFINITIONS.keys()].some(DEF => Code[i].indexOf(DEF) === 0)) {
-            let DEFV = [...DEFINITIONS.keys()].filter(DEF => Code[i].indexOf(DEF) === 0).sort((a,b) => b.length - a.length)[0];
+          } else if ([...DEFINITIONS.keys()].some(DEF => Code.indexOf(DEF) === 0)) {
+            let DEFV = [...DEFINITIONS.keys()].filter(DEF => Code.indexOf(DEF) === 0).sort((a,b) => b.length - a.length)[0];
             GenerationData.steps.reps += DEFINITIONS.get(DEFV);
             i += DEFV.length - 1;
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps

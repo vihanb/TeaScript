@@ -142,10 +142,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
           } else if ([].concat(_toConsumableArray(DEFINITIONS.keys())).some(function (DEF) {
-            return Code[_i].indexOf(DEF) === 0;
+            return Code.indexOf(DEF) === 0;
           })) {
             var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
-              return Code[_i].indexOf(DEF) === 0;
+              return Code.indexOf(DEF) === 0;
             }).sort(function (a, b) {
               return b.length - a.length;
             })[0];
