@@ -2,7 +2,7 @@
 ////
 //
 // TeaScript 3 - Compiler
-// (c) Vihan B 2015
+// (c) Vihan 2015
 //
 "use strict";
 
