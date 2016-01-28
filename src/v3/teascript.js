@@ -82,7 +82,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var REGEX_FLAG = /[gmi]+/;
     var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["L", "[A-Za-z]"], ["N", "[A-Za-z0-9]"]]);
 
-    var POLYGLOT_KEY = "[p|";
+    // Keys
+    var KEY_POLYGLOT = "[p|";
+    var KEY_QUINE = "[q|";
 
     /*=== START CODE ===*/
     var DEFINITIONS = new Map();
@@ -153,7 +155,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             });
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
-          } else if (Code.slice(_i).indexOf("\"" + POLYGLOT_KEY) === 0) {
+          } else if (Code.slice(_i).indexOf("\"" + KEY_POLYGLOT) === 0) {
             // Start Polygot
             var CollectedCode = "";
             _i++;
@@ -161,7 +163,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               CollectedCode += Code[_i];
               if (!Code[_i + 1]) break;
             }
-            GenerationData.steps.reps = CollectedCode.slice(POLYGLOT_KEY.length);
+            GenerationData.steps.reps = CollectedCode.slice(KEY_POLYGLOT.length);
+            _i = Code.length;
+          } else if (Code.slice(_i).indexOf("\"" + KEY_QUINE) === 0) {
+            var CollectedCode = "";
+            _i++;
+            for (var j = _i; _i - j < MAX_LITERAL && (Code[_i] !== '"' || Code[_i] !== ']'); _i++) {
+              CollectedCode += Code[_i];
+              if (!Code[_i + 1]) break;
+            }
+            GenerationData.steps.reps = TeaScript("`" + Code.replace(/\\/g, "\\\\").replace(/`/g, "\\`") + "`" + CollectedCode.slice(KEY_QUINE.length));
             _i = Code.length;
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
