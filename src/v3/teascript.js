@@ -82,6 +82,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     var REGEX_FLAG = /[gmi]+/;
     var REGEX_CLASS = new Map([["A", "[A-Z]"], ["a", "[a-z]"], ["L", "[A-Za-z]"], ["N", "[A-Za-z0-9]"]]);
 
+    var POLYGLOT_KEY = "[p|";
+
     /*=== START CODE ===*/
     var DEFINITIONS = new Map();
 
@@ -151,6 +153,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             });
             _i += _Comment[0].length;
             for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
+          } else if (Code.slice(_i).indexOf("\"" + POLYGLOT_KEY) === 0) {
+            // Start Polygot
+            var CollectedCode = "";
+            _i++;
+            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== '"'; _i++) {
+              CollectedCode += Code[_i];
+              if (!Code[_i + 1]) break;
+            }
+            GenerationData.steps.reps = CollectedCode.slice(POLYGLOT_KEY.length);
+            _i = Code.length;
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
             GenerationData.steps.reps += "/";
@@ -260,7 +272,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       });
     }
 
-    return [GenerationData, DEFINITIONS];
+    return GenerationData;
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;else global.TeaScript = TeaScript;

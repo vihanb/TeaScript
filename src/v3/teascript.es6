@@ -76,6 +76,8 @@
       ["L", "[A-Za-z]"],
       ["N", "[A-Za-z0-9]"]
     ]);
+    
+    const POLYGLOT_KEY = `[p|`;
 
     /*=== START CODE ===*/
     let DEFINITIONS = new Map();
@@ -133,6 +135,15 @@
             let Comment = COMMENT.find(Start => Code.slice(i, i + Start[0].length) === Start[0]);
             i += Comment[0].length;
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] && Code.slice(i, i + Comment[1].length) !== Comment[1]; i++);
+          } else if (Code.slice(i).indexOf(`"`+POLYGLOT_KEY) === 0) { // Start Polygot
+            let CollectedCode = "";
+            i++;
+            for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== '"'; i++) {
+              CollectedCode += Code[i];
+              if (!Code[i + 1]) break;
+            }
+            GenerationData.steps.reps = CollectedCode.slice(POLYGLOT_KEY.length);
+            i = Code.length;
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
             GenerationData.steps.reps += "/";
             i++;
@@ -228,7 +239,7 @@
       NestOrder.reverse().forEach(Key => GenerationData.steps.parenfix += CLOSE_END[CLOSE_START.indexOf(Key)]);
     }
 
-    return [GenerationData, DEFINITIONS];
+    return GenerationData;
   };
 
   if (global.TeaScript) global.TeaScript.Compile = TeaScript;
