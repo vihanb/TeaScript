@@ -146,14 +146,15 @@
             }
             GenerationData.steps.reps = CollectedCode.slice(KEY_POLYGLOT.length);
             i = Code.length;
-          } else if (Code.slice(i).indexOf(`"`+KEY_QUINE) === 0) {
+          } else if (Code.slice(i).indexOf(KEY_QUINE) === 0) {
             let CollectedCode = "";
             i++;
-            for (let j = i; (i - j) < MAX_LITERAL && (Code[i] !== '"' || Code[i] !== ']'); i++) {
+            for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== ']'; i++) {
               CollectedCode += Code[i];
               if (!Code[i + 1]) break;
             }
-            GenerationData.steps.reps = TeaScript(`\`${Code.replace(/\\/g,"\\\\").replace(/`/g,"\\`")}\`` + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
+            GenerationData.steps.reps = `v="${Code.replace(/\\/,"\\\\").replace(/"/, `\\"`)}";`+
+              TeaScript(`\`${Code.replace(/\\/g,"\\\\").replace(/`/g,"\\`")}\`` + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
             i = Code.length;
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
             GenerationData.steps.reps += "/";

@@ -165,14 +165,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }
             GenerationData.steps.reps = CollectedCode.slice(KEY_POLYGLOT.length);
             _i = Code.length;
-          } else if (Code.slice(_i).indexOf("\"" + KEY_QUINE) === 0) {
+          } else if (Code.slice(_i).indexOf(KEY_QUINE) === 0) {
             var CollectedCode = "";
             _i++;
-            for (var j = _i; _i - j < MAX_LITERAL && (Code[_i] !== '"' || Code[_i] !== ']'); _i++) {
+            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ']'; _i++) {
               CollectedCode += Code[_i];
               if (!Code[_i + 1]) break;
             }
-            GenerationData.steps.reps = TeaScript("`" + Code.replace(/\\/g, "\\\\").replace(/`/g, "\\`") + "`" + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
+            GenerationData.steps.reps = "v=\"" + Code.replace(/\\/, "\\\\").replace(/"/, "\\\"") + "\";" + TeaScript("`" + Code.replace(/\\/g, "\\\\").replace(/`/g, "\\`") + "`" + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
             _i = Code.length;
           } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
             // Start custom RegExps
