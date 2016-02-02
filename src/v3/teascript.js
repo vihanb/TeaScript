@@ -114,127 +114,129 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }
           }
         } else if (Code[_i] === "\\") {
+          /* Disable Definitions?
           Definition = 1;
+          // */
         } else if ([].concat(_toConsumableArray(DEFINITIONS.keys())).some(function (DEF) {
-          return Code.slice(_i).indexOf(DEF) === 0;
-        })) {
-          var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
             return Code.slice(_i).indexOf(DEF) === 0;
-          }).sort(function (a, b) {
-            return b.length - a.length;
-          })[0];
-          GenerationData.steps.reps += DEFINITIONS.get(DEFV);
-          _i += DEFV.length - 1;
-        } else if (PendingProp.length > 0) {
-          // Within a property name
-          if (MATCH_PROP.test(Code[_i])) {
-            PendingProp += Code[_i];
-            if (_i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
-          } else {
-            var _prop = PendingProp;
-            PendingProp = "";
-            if (Code[_i] === "\\") {
-              GenerationData.steps.reps += _prop + "(";
-            } else {
-              if ((MATCH_STRT.test(Code[_i]) || MATCH_END.test(Code[_i])) && !RESERVED.includes(_prop)) {
-                GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
-                if (Code[_i] !== "(" && Code[_i] !== ")" && Code[_i] !== "`") GenerationData.steps.reps += "(";
-              } else {
-                GenerationData.steps.reps += _prop;
-              }
-              _i--;
-            }
-          }
-        } else {
-          if (COMMENT.some(function (Start) {
-            return Code.slice(_i, _i + Start[0].length) === Start[0];
           })) {
-            // Comment
-            var _Comment = COMMENT.find(function (Start) {
-              return Code.slice(_i, _i + Start[0].length) === Start[0];
-            });
-            _i += _Comment[0].length;
-            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
-          } else if (Code.slice(_i).indexOf("\"" + KEY_POLYGLOT) === 0) {
-            // Start Polygot
-            var CollectedCode = "";
-            _i++;
-            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== '"'; _i++) {
-              CollectedCode += Code[_i];
-              if (!Code[_i + 1]) break;
-            }
-            GenerationData.steps.reps = CollectedCode.slice(KEY_POLYGLOT.length);
-            _i = Code.length;
-          } else if (Code.slice(_i).indexOf(KEY_QUINE) === 0) {
-            var CollectedCode = "";
-            _i++;
-            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ']'; _i++) {
-              CollectedCode += Code[_i];
-              if (!Code[_i + 1]) break;
-            }
-            GenerationData.steps.reps = "v=\"" + Code.replace(/\\/, "\\\\").replace(/"/, "\\\"") + "\";" + TeaScript("`" + Code.replace(/\\/g, "\\\\").replace(/`/g, "\\`") + "`" + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
-            _i = Code.length;
-          } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
-            // Start custom RegExps
-            GenerationData.steps.reps += "/";
-            _i++;
-            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== "/"; _i++) {
+            var DEFV = [].concat(_toConsumableArray(DEFINITIONS.keys())).filter(function (DEF) {
+              return Code.slice(_i).indexOf(DEF) === 0;
+            }).sort(function (a, b) {
+              return b.length - a.length;
+            })[0];
+            GenerationData.steps.reps += DEFINITIONS.get(DEFV);
+            _i += DEFV.length - 1;
+          } else if (PendingProp.length > 0) {
+            // Within a property name
+            if (MATCH_PROP.test(Code[_i])) {
+              PendingProp += Code[_i];
+              if (_i === Code.length - 1) GenerationData.steps.reps += PendingProp.replace(/(?!^|$)/g, ".");
+            } else {
+              var _prop = PendingProp;
+              PendingProp = "";
               if (Code[_i] === "\\") {
-                if (REGEX_CLASS.has(Code[_i + 1])) GenerationData.steps.reps += REGEX_CLASS.get(Code[_i++ + 1]);else GenerationData.steps.reps += "\\" + Code[++_i];
+                GenerationData.steps.reps += _prop + "(";
               } else {
-                GenerationData.steps.reps += Code[_i];
+                if ((MATCH_STRT.test(Code[_i]) || MATCH_END.test(Code[_i])) && !RESERVED.includes(_prop)) {
+                  GenerationData.steps.reps += _prop.replace(/(?!^|$)/g, ".");
+                  if (Code[_i] !== "(" && Code[_i] !== ")" && Code[_i] !== "`") GenerationData.steps.reps += "(";
+                } else {
+                  GenerationData.steps.reps += _prop;
+                }
+                _i--;
               }
-              if (!Code[_i + 1]) Code += "/";
-              if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
             }
-            GenerationData.steps.reps += "/";
-
-            // Hacky way of allowing flags
-            if (!Code.slice(++_i).search(REGEX_FLAG)) {
-              // There are flags
-              GenerationData.steps.reps += Code.slice(_i).match(REGEX_FLAG)[0];
-              _i += Code.slice(_i).match(REGEX_FLAG)[0].length;
-            }
-            --_i;
-          } else if (Code[_i] === "/" ? !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "") : ESCAPES_START.includes(Code[_i])) {
-            // Found an escape character (string)
-            EscapeChar = ESCAPES_START.indexOf(Code[_i]);
-            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
-            _i++;
-            for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ESCAPES_END[EscapeChar]; _i++) {
-              if (Code[_i] === ESCAPES_ESC[EscapeChar]) {
-                if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[EscapeChar];
-                GenerationData.steps.reps += Code[++_i];
-              } else {
-                GenerationData.steps.reps += Code[_i];
-              }
-              if (!Code[_i + 1]) Code += ESCAPES_END[EscapeChar];
-              if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
-            }
-            if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
-          } else if (MATCH_PROP.test(Code[_i])) {
-            // Property character
-            if (MATCH_LEND.test(Code[_i - 1])) GenerationData.steps.reps += ".";
-            if (Code[_i + 1]) PendingProp += Code[_i];else GenerationData.steps.reps += Code[_i];
-          } else if (Code[_i] === "#") {
-            // # Operator
-            GenerationData.steps.reps += "(l,i,a,b)=>";
-          } else if (Code[_i] === "@") {
-            // @ Operator
-            GenerationData.steps.reps += "(q,r,s,t)=>q.";
-          } else if (MATCH_NUM.test(Code[_i])) {
-            // Number
-            for (var j = _i; _i - j < MAX_LITERAL && /[\d.]/.test(Code[_i]); _i++) {
-              GenerationData.steps.reps += Code[_i];
-            }GenerationData.steps.reps += " ";--_i;
-          } else if (Data.rep.hasOwnProperty(Code[_i])) {
-            // Unicode char
-            GenerationData.steps.reps += Data.rep[Code[_i]];
           } else {
-            // Other
-            GenerationData.steps.reps += Code[_i];
+            if (COMMENT.some(function (Start) {
+              return Code.slice(_i, _i + Start[0].length) === Start[0];
+            })) {
+              // Comment
+              var _Comment = COMMENT.find(function (Start) {
+                return Code.slice(_i, _i + Start[0].length) === Start[0];
+              });
+              _i += _Comment[0].length;
+              for (var j = _i; _i - j < MAX_LITERAL && Code[_i] && Code.slice(_i, _i + _Comment[1].length) !== _Comment[1]; _i++) {}
+            } else if (Code.slice(_i).indexOf("\"" + KEY_POLYGLOT) === 0) {
+              // Start Polygot
+              var CollectedCode = "";
+              _i++;
+              for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== '"'; _i++) {
+                CollectedCode += Code[_i];
+                if (!Code[_i + 1]) break;
+              }
+              GenerationData.steps.reps = CollectedCode.slice(KEY_POLYGLOT.length);
+              _i = Code.length;
+            } else if (Code.slice(_i).indexOf(KEY_QUINE) === 0) {
+              var CollectedCode = "";
+              _i++;
+              for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ']'; _i++) {
+                CollectedCode += Code[_i];
+                if (!Code[_i + 1]) break;
+              }
+              GenerationData.steps.reps = "v=\"" + Code.replace(/\\/, "\\\\").replace(/"/, "\\\"") + "\";" + TeaScript("`" + Code.replace(/\\/g, "\\\\").replace(/`/g, "\\`") + "`" + CollectedCode.slice(KEY_QUINE.length)).steps.parenfix;
+              _i = Code.length;
+            } else if (Code[_i] === "/" && !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "")) {
+              // Start custom RegExps
+              GenerationData.steps.reps += "/";
+              _i++;
+              for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== "/"; _i++) {
+                if (Code[_i] === "\\") {
+                  if (REGEX_CLASS.has(Code[_i + 1])) GenerationData.steps.reps += REGEX_CLASS.get(Code[_i++ + 1]);else GenerationData.steps.reps += "\\" + Code[++_i];
+                } else {
+                  GenerationData.steps.reps += Code[_i];
+                }
+                if (!Code[_i + 1]) Code += "/";
+                if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+              }
+              GenerationData.steps.reps += "/";
+
+              // Hacky way of allowing flags
+              if (!Code.slice(++_i).search(REGEX_FLAG)) {
+                // There are flags
+                GenerationData.steps.reps += Code.slice(_i).match(REGEX_FLAG)[0];
+                _i += Code.slice(_i).match(REGEX_FLAG)[0].length;
+              }
+              --_i;
+            } else if (Code[_i] === "/" ? !MATCH_DIV.test([].concat(_toConsumableArray(Code.slice(0, _i))).reverse().join("").trim() || "") : ESCAPES_START.includes(Code[_i])) {
+              // Found an escape character (string)
+              EscapeChar = ESCAPES_START.indexOf(Code[_i]);
+              if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
+              _i++;
+              for (var j = _i; _i - j < MAX_LITERAL && Code[_i] !== ESCAPES_END[EscapeChar]; _i++) {
+                if (Code[_i] === ESCAPES_ESC[EscapeChar]) {
+                  if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += ESCAPES_ESC[EscapeChar];
+                  GenerationData.steps.reps += Code[++_i];
+                } else {
+                  GenerationData.steps.reps += Code[_i];
+                }
+                if (!Code[_i + 1]) Code += ESCAPES_END[EscapeChar];
+                if (_i - j + 1 === MAX_LITERAL) Warn("Approaching Literal Maximum");
+              }
+              if (ESCAPES_KEEP[EscapeChar]) GenerationData.steps.reps += Code[_i];
+            } else if (MATCH_PROP.test(Code[_i])) {
+              // Property character
+              if (MATCH_LEND.test(Code[_i - 1])) GenerationData.steps.reps += ".";
+              if (Code[_i + 1]) PendingProp += Code[_i];else GenerationData.steps.reps += Code[_i];
+            } else if (Code[_i] === "#") {
+              // # Operator
+              GenerationData.steps.reps += "(l,i,a,b)=>";
+            } else if (Code[_i] === "@") {
+              // @ Operator
+              GenerationData.steps.reps += "(q,r,s,t)=>q.";
+            } else if (MATCH_NUM.test(Code[_i])) {
+              // Number
+              for (var j = _i; _i - j < MAX_LITERAL && /[\d.]/.test(Code[_i]); _i++) {
+                GenerationData.steps.reps += Code[_i];
+              }GenerationData.steps.reps += " ";--_i;
+            } else if (Data.rep.hasOwnProperty(Code[_i])) {
+              // Unicode char
+              GenerationData.steps.reps += Data.rep[Code[_i]];
+            } else {
+              // Other
+              GenerationData.steps.reps += Code[_i];
+            }
           }
-        }
         i = _i;
       };
 

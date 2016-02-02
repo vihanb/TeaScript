@@ -108,7 +108,9 @@
             }
           }
         } else if (Code[i] === "\\") {
+          /* Disable Definitions?
           Definition = 1;
+          // */
         } else if ([...DEFINITIONS.keys()].some(DEF => Code.slice(i).indexOf(DEF) === 0)) {
           let DEFV = [...DEFINITIONS.keys()].filter(DEF => Code.slice(i).indexOf(DEF) === 0).sort((a,b) => b.length - a.length)[0];
           GenerationData.steps.reps += DEFINITIONS.get(DEFV);
