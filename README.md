@@ -7,7 +7,7 @@
 # Try TeaScript
 <p align="center">
   <a href="http://teascript.readthedocs.org">All Documentation</a> <br>
-  <a href="http://vihanserver.tk/p/TeaScript/">Online Interpreter</a>
+  <a href="http://vihan.org/p/TeaScript/">Online Interpreter</a>
 </p>
 
 # TeaScript 3 is now out!
