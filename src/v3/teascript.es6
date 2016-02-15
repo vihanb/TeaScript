@@ -76,7 +76,7 @@
       ["L", "[A-Za-z]"],
       ["N", "[A-Za-z0-9]"]
     ]);
-    
+
     // Keys
     const KEY_POLYGLOT = `[p|`;
     const KEY_QUINE    = `[q|`;
@@ -107,11 +107,14 @@
               DefinitionItem[1] += Code[i];
             }
           }
-        } else if (Code[i] === "\\") {
-          /* Disable Definitions?
+        }
+        /* Disable Definitions?
+        else if (Code[i] === "\\") {
+
           Definition = 1;
-          // */
-        } else if ([...DEFINITIONS.keys()].some(DEF => Code.slice(i).indexOf(DEF) === 0)) {
+
+        } // */
+        else if ([...DEFINITIONS.keys()].some(DEF => Code.slice(i).indexOf(DEF) === 0)) {
           let DEFV = [...DEFINITIONS.keys()].filter(DEF => Code.slice(i).indexOf(DEF) === 0).sort((a,b) => b.length - a.length)[0];
           GenerationData.steps.reps += DEFINITIONS.get(DEFV);
           i += DEFV.length - 1;
@@ -161,6 +164,7 @@
           } else if (Code[i] === "/" && !MATCH_DIV.test([...Code.slice(0,i)].reverse().join("").trim()||"")) { // Start custom RegExps
             GenerationData.steps.reps += "/";
             i++;
+            console.log("REGEX STARTED")
             for (let j = i; (i - j) < MAX_LITERAL && Code[i] !== "/"; i++) {
               if (Code[i] === "\\") {
                 if (REGEX_CLASS.has(Code[i + 1]))
